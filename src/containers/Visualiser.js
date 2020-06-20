@@ -1,12 +1,13 @@
 import React, {Component} from "react";
-import machineLearningLogo from "../assests/machinelearninglogo.svg"
-
+import {Button, Image} from "semantic-ui-react";
+import Home from "../components/Home/Home"
+import Linearregression from "../components/Algorithms/Linear-regression";
 class Visualiser extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1>Ml algo visualiser</h1>
-                <img  src={machineLearningLogo} alt={"machine learning logo"}/>
+                <Home/>
+                <Linearregression />
             </React.Fragment>
         )
     }
