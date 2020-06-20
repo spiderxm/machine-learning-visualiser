@@ -1,13 +1,13 @@
 import React, {Component} from "react";
-import {Button, Image} from "semantic-ui-react";
 import Home from "../components/Home/Home"
 import Linearregression from "../components/Algorithms/Linear-regression";
+import Multiplelinear from "../components/Algorithms/Multiple-linear"
 class Visualiser extends Component {
     render() {
         return (
             <React.Fragment>
-                <Home/>
-                <Linearregression />
+                {/*<Linearregression />*/}
+                <Multiplelinear />
             </React.Fragment>
         )
     }
