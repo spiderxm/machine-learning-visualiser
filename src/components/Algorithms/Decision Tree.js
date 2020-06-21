@@ -30,7 +30,9 @@ class DecisionTree extends Component {
         Glucose: null,
         Insulin: null,
         Pregnancies: null,
-        SkinThickness: null
+        SkinThickness: null,
+        result: null,
+        error: false
     }
     agechangeHandler = (event) => {
         this.setState({Age: event.target.value})
@@ -82,13 +84,35 @@ class DecisionTree extends Component {
             .then(response => {
                 console.log(response)
                 this.setState({result: response.data})
+                this.setState({error: false})
             })
             .catch(error => {
                 console.log(error)
+                this.setState({error: true})
             })
     }
 
     render() {
+        let prediction = null;
+        if (this.state.result) {
+            prediction = (
+                <div>
+                    <div className="ui section divider"></div>
+                    <h3 style={{color: "blue"}}>
+                        <strong>Probability of your admission is : {this.state.result.result}</strong>
+                    </h3>
+                </div>
+            );
+        }
+        if (this.state.error) {
+            prediction = (
+                <div>
+                    <h3 style={{color: "red"}}>
+                        <strong>There is some error please try again</strong>
+                    </h3>
+                </div>
+            )
+        }
         const style = {
             border: "1px solid grey",
             borderRadius: "20px",
@@ -191,6 +215,7 @@ class DecisionTree extends Component {
                         </div>
                         <button className="ui button" type="submit">Submit</button>
                     </form>
+                    {prediction}
                 </div>
 
             </React.Fragment>
