@@ -156,7 +156,7 @@ class multipleLinear extends Component {
                         </div>
                         <div className="field">
                             <label>Cgpa</label>
-                            <input type="number" min={this.state.min.cgpa} max={this.state.max.cgpa} name="cgpa"
+                            <input type="number" min={this.state.min.cgpa} max={this.state.max.cgpa} name="cgpa" step={"any"}
                                    placeholder="cgpa" required onChange={this.cgpachangeHandler}/>
                         </div>
                         <div className="ui segment">
