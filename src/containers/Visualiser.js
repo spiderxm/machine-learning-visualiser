@@ -3,13 +3,15 @@ import Home from "../components/Home/Home"
 import Linearregression from "../components/Algorithms/Linear-regression";
 import Multiplelinear from "../components/Algorithms/Multiple-linear"
 import Knn from "../components/Algorithms/Knn";
+import DecisionTree from "../components/Algorithms/Decision Tree";
 class Visualiser extends Component {
     render() {
         return (
             <React.Fragment>
                 {/*<Linearregression />*/}
                 {/*<Multiplelinear />*/}
-                <Knn />
+                {/*<Knn />*/}
+                <DecisionTree />
             </React.Fragment>
         )
     }
