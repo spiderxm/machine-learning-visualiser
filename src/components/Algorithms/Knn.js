@@ -30,13 +30,21 @@ class knn extends Component {
             pl: parseFloat(this.state.pl),
             pw: parseFloat(this.state.pw)
         }
-        console.log(data)
+        // console.log(data)
         axios.post('/knn', data)
             .then(response => {
-                console.log(response.data)
-                this.setState({result: response.data.result})
+                console.log(response)
+                this.setState({
+                    result: response.data,
+                    error: false
+                })
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                this.setState({
+                    error: true,
+                    result: null
+                })
+            })
     }
     slchangeHandler = (event) => {
         this.setState({sl: event.target.value})
@@ -52,13 +60,13 @@ class knn extends Component {
     }
 
     componentDidMount() {
-        axios.get("/knn").then(
-            response => {
-                console.log(response)
-            }
-        ).catch(err => {
-            console.log(err)
-        })
+        // axios.get("/knn").then(
+        //     response => {
+        //         console.log(response)
+        //     }
+        // ).catch(err => {
+        //     console.log(err)
+        // })
     }
 
 
@@ -68,13 +76,22 @@ class knn extends Component {
             prediction = (
                 <div>
                     <div className="ui section divider"></div>
-                    <h3><strong>Class for dimensions provided by you : {this.state.result}</strong></h3>
+                    <h3 style={{color: "blue"}}><strong>Class for dimensions provided by you
+                        : {this.state.result.result}</strong></h3>
                 </div>)
+        }
+        if (this.state.error === true) {
+            prediction = (
+                <div>
+                    <div className="ui section divider"></div>
+                    <h3 style={{color: "red"}}><strong>There is some error please try again </strong></h3>
+                </div>
+            )
         }
         const style = {
             border: "1px solid grey",
             borderRadius: "20px",
-            padding: "1rem",
+            padding: "2rem",
             marginTop: "4rem"
         }
         return (
