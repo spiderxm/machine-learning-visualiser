@@ -18,6 +18,8 @@ import Imageupload from "../components/Imageupload"
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Signup"
 import Signup from "../components/Auth/Signup";
+import {Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 class MenuBar extends Component {
     state = {
@@ -47,15 +49,19 @@ class MenuBar extends Component {
                              style={{backgroundColor: "grey"}}
                              inverted>
                         <Menu.Item>
-                            <div style={{margin: "5px"}}>
-                                <Image size={"mini"} src={LinearRegressionLogo} alt={"logo"}/>
-                            </div>
-                            Linear Regression
+                            <Link to={"/linearregression"} onClick={() => this.setState({visible: false})}>
+                                <div style={{margin: "5px"}}>
+                                    <Image size={"mini"} src={LinearRegressionLogo} alt={"logo"}/>
+                                </div>
+                                Linear Regression
+                            </Link>
                         </Menu.Item>
                         <Menu.Item>
-                            <div style={{margin: "5px"}}>
-                                <Image size={"mini"} src={MultipleLinearRegressionLogo} alt={"logo"}/>
-                            </div>
+                            <Link to={"/multiplelinearregression"} onClick={() => this.setState({visible: false})}>
+                                <div style={{margin: "5px"}}>
+                                    <Image size={"mini"} src={MultipleLinearRegressionLogo} alt={"logo"}/>
+                                </div>
+                            </Link>
                             Multiple Linear Regression
                         </Menu.Item>
                         <Menu.Item>
@@ -71,16 +77,21 @@ class MenuBar extends Component {
                             Support Vector Machine
                         </Menu.Item>
                         <Menu.Item>
-                            <div style={{margin: "5px"}}>
-                                <Image size={"mini"} src={Knnlogo} alt={"logo"}/>
-                            </div>
-                            K Nearest Neighbours
+                            <Link to={"/knn"} onClick={() => this.setState({visible: false})}>
+                                <div style={{margin: "5px"}}>
+                                    <Image size={"mini"} src={Knnlogo} alt={"logo"}/>
+                                K Nearest Neighbours
+                                </div>
+                            </Link>
                         </Menu.Item>
                         <Menu.Item>
-                            <div style={{margin: "5px"}}>
-                                <Image size={"mini"} src={Decisiontreelogo} alt={"logo"}/>
-                            </div>
-                            Decision Tree
+                            <Link to={"/decisiontree"} onClick={() => this.setState({visible: false})}>
+                                <div style={{margin: "5px"}}>
+                                    <Image size={"mini"} src={Decisiontreelogo} alt={"logo"}/>
+                                    Decision Tree
+                                </div>
+                            </Link>
+
                         </Menu.Item>
                         <Menu.Item>
                             <div style={{margin: "5px"}}>
@@ -106,23 +117,27 @@ class MenuBar extends Component {
                             </Menu.Item>
                             <Menu.Menu position="right">
                                 <Menu.Item>
-                                    Login
+                                    <Link to={"/login"}>
+                                        Login
+                                    </Link>
                                 </Menu.Item>
                                 <Menu.Item>
-                                    Signup
+                                    <Link to={"/register"}>
+                                        Signup
+                                    </Link>
                                 </Menu.Item>
                                 <Menu.Item>
                                     Logout
                                 </Menu.Item>
                             </Menu.Menu>
                         </Menu>
-
-                        {/*<Segment basic>*/}
-                        {/*    <Multiplelinear/>*/}
-                        {/*    <Linearregression/>*/}
-                        {/*</Segment>*/}
-                        <h1>Hi</h1>
-                        <Signup />
+                        <Route path={"/linearregression"} exact render={() => (<Linearregression/>)}/>
+                        <Route path={"/multiplelinearregression"} exact render={() => <Multiplelinear/>}/>
+                        <Route path={"/knn"} exact render={() => <Knn/>}/>
+                        <Route path={"/decisiontree"} exact render={() => <DecisionTree/>}/>
+                        <Route path={"/login"} exact render={() => <Login/>}/>
+                        <Route path={"/register"} exact render={() => <Register/>}/>
+                        <Route path={"/"} exact render={() => <Home/>}/>
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </div>

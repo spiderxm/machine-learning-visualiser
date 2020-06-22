@@ -2,10 +2,12 @@ import React, {Component} from 'react'
 import {Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
 import MachineLearningLogo from '../../assests/attachments/Machine Learning.png'
 import firebase from "firebase";
+
 class Login extends Component {
     state = {
         email: null,
-        password: null
+        password: null,
+        loggedIn: false
     }
     emailchangeHandler = event => {
         this.setState({email: event.target.value})
@@ -15,8 +17,17 @@ class Login extends Component {
     }
     Login = (event) => {
         event.preventDefault();
-        console.log(this.state.email)
-        console.log(this.state.password)
+        const email = this.state.email
+        const password = this.state.password
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(response => {
+                this.setState({loggedIn :true})
+                }
+            )
+            .catch(err => {
+                    console.log(err)
+                }
+            )
     }
 
     render() {
@@ -58,7 +69,8 @@ class Login extends Component {
                 </Grid.Column>
             </Grid>)
     }
-};
+}
+;
 
 
 export default Login

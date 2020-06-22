@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import {Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
 import MachineLearningLogo from '../../assests/attachments/machinelearning.png'
 import firebase from "firebase";
-class Signup extends Component{
+import axios from "axios";
+
+class Signup extends Component {
     state = {
         email: null,
-        password: null
+        password: null,
+        imageURL: ''
     }
     emailchangeHandler = event => {
         this.setState({email: event.target.value})
@@ -14,15 +17,33 @@ class Signup extends Component{
         this.setState({password: event.target.value})
     }
     Signup = (event) => {
+
+        event.preventDefault();
         console.log(this.state.email)
         console.log(this.state.password)
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(response => {
+                console.log(response)
+                const data = new FormData();
+                data.append('file', this.uploadInput.files[0]);
+                data.append('filename', response.user.uid + ".png");
+                axios.post("/upload", data).then((response) => {
+                    console.log(response)
+                    this.setState({imageURL: response.data})
+                    console.log("User Created")
+
+                });
+            })
+            .catch(err => console.log(err)
+            )
     }
+
     render() {
         return (
             <Grid textAlign='center' style={{height: '100vh'}} verticalAlign='middle'>
                 <Grid.Column style={{maxWidth: 500}}>
-                    <Header as='h2'  textAlign='center'>
-                        <Image src={MachineLearningLogo} /> Sign up
+                    <Header as='h2' textAlign='center'>
+                        <Image src={MachineLearningLogo}/> Sign up
                     </Header>
                     <Form size='large' onSubmit={this.Signup}>
                         <Segment stacked>
@@ -63,7 +84,6 @@ class Signup extends Component{
             </Grid>)
     }
 };
-
 
 
 export default Signup

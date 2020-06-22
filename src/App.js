@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import './App.css';
 import Visualiser from "./containers/Visualiser";
+import {BrowserRouter} from 'react-router-dom'
 
 class App extends Component {
     render() {
         return (
-            <div>
-                <Visualiser/>
-            </div>
+            <BrowserRouter>
+                <div>
+                    <Visualiser/>
+                </div>
+            </BrowserRouter>
         );
     }
 }
