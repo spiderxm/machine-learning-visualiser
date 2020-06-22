@@ -12,6 +12,9 @@ import Svmlogo from "../assests/attachments/SVM.png"
 import RandomForestLogo from "../assests/attachments/RandomForest.png"
 import LogisticRegressionLogo from "../assests/attachments/logisticregression.png"
 import Decisiontreelogo from "../assests/attachments/DecisionTree.png"
+import Svm from "../components/Algorithms/SvmNew"
+import RandomForest from "../components/Algorithms/RandomForest";
+import LogisticRegression from "../components/Algorithms/LogisticRegression";
 import {Button, Header, Icon, Image, Menu, Segment, Sidebar} from "semantic-ui-react";
 import axios from 'axios'
 import Imageupload from "../components/Imageupload"
@@ -21,6 +24,7 @@ import Signup from "../components/Auth/Signup";
 import {Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import firebase from "firebase";
+import SvmNew from "../components/Algorithms/SvmNew";
 
 class MenuBar extends Component {
     state = {
@@ -55,8 +59,16 @@ class MenuBar extends Component {
                              style={{backgroundColor: "grey"}}
                              inverted>
                         <Menu.Item>
-                            <div >
-                                <Image style={{height:"60px", width:"60px", padding:"auto", marginLeft:"auto", marginRight:"auto"}} circular src={"https://storage.cloud.google.com/mlalgovisualiser/cloud-engineering-1.png?authuser=1"} alt={"logo"}/>
+                            <div>
+                                <Image style={{
+                                    height: "60px",
+                                    width: "60px",
+                                    padding: "auto",
+                                    marginLeft: "auto",
+                                    marginRight: "auto"
+                                }} circular
+                                       src={"https://storage.cloud.google.com/mlalgovisualiser/cloud-engineering-1.png?authuser=1"}
+                                       alt={"logo"}/>
                             </div>
                         </Menu.Item>
                         <Menu.Item>
@@ -76,16 +88,20 @@ class MenuBar extends Component {
                             Multiple Linear Regression
                         </Menu.Item>
                         <Menu.Item>
+                            <Link to={"/logisticregression"} onClick={() => this.setState({visible: false})}>
                             <div style={{margin: "5px"}}>
                                 <Image size={"mini"} src={LogisticRegressionLogo} alt={"logo"}/>
                             </div>
                             Logistic Regression
+                            </Link>
                         </Menu.Item>
                         <Menu.Item>
-                            <div style={{margin: "5px"}}>
-                                <Image size={"mini"} src={Svmlogo} alt={"logo"}/>
-                            </div>
-                            Support Vector Machine
+                            <Link onClick={() => this.setState({visible: false})} to={"/svm"}>
+                                <div style={{margin: "5px"}}>
+                                    <Image size={"mini"} src={Svmlogo} alt={"logo"}/>
+                                </div>
+                                Support Vector Machine
+                            </Link>
                         </Menu.Item>
                         <Menu.Item>
                             <Link to={"/knn"} onClick={() => this.setState({visible: false})}>
@@ -105,10 +121,12 @@ class MenuBar extends Component {
 
                         </Menu.Item>
                         <Menu.Item>
-                            <div style={{margin: "5px"}}>
-                                <Image size={"mini"} src={RandomForestLogo} alt={"logo"}/>
-                            </div>
-                            Random Forest Classifier
+                            <Link to={"randomforest"} onClick={() => this.setState({visible: false})}>
+                                <div style={{margin: "5px"}}>
+                                    <Image size={"mini"} src={RandomForestLogo} alt={"logo"}/>
+                                </div>
+                                Random Forest Classifier
+                            </Link>
                         </Menu.Item>
                     </Sidebar>
                     <Sidebar.Pusher
@@ -151,6 +169,10 @@ class MenuBar extends Component {
                         <Route path={"/login"} exact render={() => <Login/>}/>
                         <Route path={"/register"} exact render={() => <Register/>}/>
                         <Route path={"/"} exact render={() => <Home/>}/>
+                        <Route path={"/svm"} exact render={() => <Svm/>}/>
+                        <Route path={"/randomforest"} exact render={() => <RandomForest/>}/>
+                        <Route path={"/logisticregression"} exact render={() => <LogisticRegression />} />
+
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </div>
