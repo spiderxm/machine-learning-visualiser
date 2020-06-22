@@ -3,12 +3,16 @@ import {Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-r
 import MachineLearningLogo from '../../assests/attachments/machinelearning.png'
 import firebase from "firebase";
 import axios from "axios";
+import {Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 class Signup extends Component {
     state = {
         email: null,
         password: null,
-        imageURL: ''
+        imageURL: '',
+        load: null
+
     }
     emailchangeHandler = event => {
         this.setState({email: event.target.value})
@@ -17,7 +21,7 @@ class Signup extends Component {
         this.setState({password: event.target.value})
     }
     Signup = (event) => {
-
+        this.setState({load: true})
         event.preventDefault();
         console.log(this.state.email)
         console.log(this.state.password)
@@ -30,12 +34,17 @@ class Signup extends Component {
                 axios.post("/upload", data).then((response) => {
                     console.log(response)
                     this.setState({imageURL: response.data})
-                    console.log("User Created")
-
+                    alert("You have Signed up Successfully, please login to continue.");
+                    this.setState({redirect: true})
                 });
             })
             .catch(err => console.log(err)
             )
+    }
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/login'/>
+        }
     }
 
     render() {
@@ -72,14 +81,15 @@ class Signup extends Component {
                                    className={"ui input"}
                                    style={{marginBottom: "6px"}}
                             />
-                            <Button color={"black"} fluid size='large' type={"submit"}>
+                            <Button color={"black"} fluid size='large' loading={this.state.load} type={"submit"}>
                                 Sign-up
                             </Button>
                         </Segment>
                     </Form>
                     <Message>
-                        Already have an account? <a href=''>Log in</a>
+                        Already have an account? <Link to={"/login"}>Log in</Link>
                     </Message>
+                    {this.renderRedirect()}
                 </Grid.Column>
             </Grid>)
     }

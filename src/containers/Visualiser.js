@@ -20,11 +20,13 @@ import Register from "../components/Auth/Signup"
 import Signup from "../components/Auth/Signup";
 import {Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
+import firebase from "firebase";
 
 class MenuBar extends Component {
     state = {
         visible: false,
         imageURL: '',
+        firebaseID: null
     }
 
     toggleVisibility = () => this.setState({visible: !this.state.visible})
@@ -34,6 +36,10 @@ class MenuBar extends Component {
         if (visible) this.setState({visible: false});
     };
 
+    componentDid() {
+        this.setState({firebaseId: firebase.auth().currentUser})
+        console.log(this.state.firebaseID)
+    }
 
     render() {
         const {visible} = this.state
@@ -48,6 +54,11 @@ class MenuBar extends Component {
                              vertical
                              style={{backgroundColor: "grey"}}
                              inverted>
+                        <Menu.Item>
+                            <div >
+                                <Image style={{height:"60px", width:"60px", padding:"auto", marginLeft:"auto", marginRight:"auto"}} circular src={"https://storage.cloud.google.com/mlalgovisualiser/cloud-engineering-1.png?authuser=1"} alt={"logo"}/>
+                            </div>
+                        </Menu.Item>
                         <Menu.Item>
                             <Link to={"/linearregression"} onClick={() => this.setState({visible: false})}>
                                 <div style={{margin: "5px"}}>
@@ -80,16 +91,16 @@ class MenuBar extends Component {
                             <Link to={"/knn"} onClick={() => this.setState({visible: false})}>
                                 <div style={{margin: "5px"}}>
                                     <Image size={"mini"} src={Knnlogo} alt={"logo"}/>
-                                K Nearest Neighbours
                                 </div>
+                                K Nearest Neighbours
                             </Link>
                         </Menu.Item>
                         <Menu.Item>
                             <Link to={"/decisiontree"} onClick={() => this.setState({visible: false})}>
                                 <div style={{margin: "5px"}}>
                                     <Image size={"mini"} src={Decisiontreelogo} alt={"logo"}/>
-                                    Decision Tree
                                 </div>
+                                Decision Tree
                             </Link>
 
                         </Menu.Item>
@@ -113,7 +124,9 @@ class MenuBar extends Component {
                                 <Icon name="sidebar"/>
                             </Menu.Item>
                             <Menu.Item>
-                                ML <strong>Visualiser</strong>
+                                <Link to={"/"}>
+                                    ML <strong>Visualiser</strong>
+                                </Link>
                             </Menu.Item>
                             <Menu.Menu position="right">
                                 <Menu.Item>

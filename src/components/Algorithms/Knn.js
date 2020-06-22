@@ -92,7 +92,7 @@ class knn extends Component {
             border: "1px solid grey",
             borderRadius: "20px",
             padding: "2rem",
-            marginTop: "4rem",
+            marginTop: "10vh",
             boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)"
         }
         return (
