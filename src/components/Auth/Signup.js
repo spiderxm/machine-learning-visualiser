@@ -11,7 +11,8 @@ class Signup extends Component {
         email: null,
         password: null,
         imageURL: '',
-        load: null
+        load: null,
+        err: null
 
     }
     emailchangeHandler = event => {
@@ -21,24 +22,29 @@ class Signup extends Component {
         this.setState({password: event.target.value})
     }
     Signup = (event) => {
+        this.setState({err: null})
         this.setState({load: true})
         event.preventDefault();
         console.log(this.state.email)
         console.log(this.state.password)
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(response => {
-                console.log(response)
                 const data = new FormData();
                 data.append('file', this.uploadInput.files[0]);
                 data.append('filename', response.user.uid + ".png");
                 axios.post("/upload", data).then((response) => {
-                    console.log(response)
                     this.setState({imageURL: response.data})
                     alert("You have Signed up Successfully, please login to continue.");
                     this.setState({redirect: true})
+                    this.setState({load: false})
+
                 });
             })
-            .catch(err => console.log(err)
+            .catch(err => {
+                console.log(err)
+                    this.setState({load: false})
+                    this.setState({err: err.message})
+                }
             )
     }
     renderRedirect = () => {
@@ -48,6 +54,18 @@ class Signup extends Component {
     }
 
     render() {
+        let error = null;
+        if (this.state.err) {
+            error = (
+                <div className="ui negative message">
+                    <div className="header">
+                        {this.state.err}
+                    </div>
+                </div>
+            )
+        } else {
+            error = null;
+        }
         return (
             <Grid textAlign='center' style={{height: '100vh'}} verticalAlign='middle'>
                 <Grid.Column style={{maxWidth: 500}}>
@@ -84,6 +102,7 @@ class Signup extends Component {
                             <Button color={"black"} fluid size='large' loading={this.state.load} type={"submit"}>
                                 Sign-up
                             </Button>
+                            {error}
                         </Segment>
                     </Form>
                     <Message>

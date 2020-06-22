@@ -28,6 +28,7 @@ class Login extends Component {
     Login = (event) => {
         event.preventDefault();
         this.setState({load:true})
+        this.setState({err:null})
         const email = this.state.email
         const password = this.state.password
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -51,8 +52,10 @@ class Login extends Component {
         let error = null;
         if(this.state.err){
             error = (
-                <div style={{textAlign:"center", color:"red"}}>
-                    <span>{this.state.err}. Please try again</span>
+                <div className="ui negative message">
+                    <div className="header">
+                        {this.state.err}
+                    </div>
                 </div>
             )
         }
