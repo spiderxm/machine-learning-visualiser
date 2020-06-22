@@ -17,6 +17,7 @@ import axios from 'axios'
 import Imageupload from "../components/Imageupload"
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Signup"
+import Signup from "../components/Auth/Signup";
 
 class MenuBar extends Component {
     state = {
@@ -121,7 +122,7 @@ class MenuBar extends Component {
                         {/*    <Linearregression/>*/}
                         {/*</Segment>*/}
                         <h1>Hi</h1>
-                        <Register />
+                        <Signup />
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </div>

@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios'
-
+import './firebase.js'
 axios.defaults.baseURL = "http://127.0.0.1:5000";
 
 ReactDOM.render(
