@@ -15,6 +15,8 @@ import Decisiontreelogo from "../assests/attachments/DecisionTree.png"
 import {Button, Header, Icon, Image, Menu, Segment, Sidebar} from "semantic-ui-react";
 import axios from 'axios'
 import Imageupload from "../components/Imageupload"
+import Login from "../components/Auth/Login";
+import Register from "../components/Auth/Signup"
 
 class MenuBar extends Component {
     state = {
@@ -119,7 +121,7 @@ class MenuBar extends Component {
                         {/*    <Linearregression/>*/}
                         {/*</Segment>*/}
                         <h1>Hi</h1>
-                        <Imageupload />
+                        <Register />
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </div>

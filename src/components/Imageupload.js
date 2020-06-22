@@ -20,20 +20,33 @@ class Imageupload extends Component {
     }
 
     render() {
+        const style = {
+            border: "1px solid grey",
+            borderRadius: "20px",
+            padding: "2rem",
+            marginTop: "4rem",
+            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)"
+        }
         return (
+            <div className="ui container left aligned" style={style}>
             <form onSubmit={this.handleUploadImage}>
+
                 <div>
                     <input ref={(ref) => {
                         this.uploadInput = ref;
-                    }} type="file" required/>
+                    }} type="file"
+                           accept={"image/png"}
+                           required
+                    />
                 </div>
 
                 <br/>
                 <div>
                     <button>Upload</button>
                 </div>
-                <img src={this.state.imageURL} alt="img"/>
+                <img class="ui medium circular image" src={this.state.imageURL} alt="img"/>
             </form>
+            </div>
         );
     }
 }
