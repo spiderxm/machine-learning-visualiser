@@ -4,13 +4,13 @@ import {Button} from "semantic-ui-react";
 
 class multipleLinear extends Component {
     state = {
-        grescore: 290.0,
-        toeflscore: 92.0,
-        universityrating: 1,
-        sop: 1,
-        lor: 1,
-        cgpa: 6.8,
-        research: true,
+        grescore: null,
+        toeflscore: null,
+        universityrating: null,
+        sop: null,
+        lor: null,
+        cgpa: null,
+        research: 0,
         result: null,
         showresult: null,
         error: null,
