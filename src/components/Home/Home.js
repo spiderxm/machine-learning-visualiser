@@ -9,9 +9,11 @@ import knn from '../../assests/attachments/k nearest Neighbours.png'
 import SVM from '../../assests/attachments/SVM.png'
 import {Link} from 'react-router-dom'
 import Randomforestlogo from "../../assests/attachments/RandomForest.png"
+import Home1 from "./Home1"
 const home = (props) => {
     return (
         <React.Fragment>
+            <Home1 />
             <div className="ui three column doubling stackable grid container" style={{marginTop:"10vh"}}>
                 <div className="column">
                     <div className={"ui"} style={{display: "flex", justifyContent: "center"}}>
