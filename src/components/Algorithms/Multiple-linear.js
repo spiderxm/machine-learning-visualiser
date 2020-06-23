@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import axios from 'axios'
 import {Button} from "semantic-ui-react";
+import mlr from '../../assests/attachments/multiple linear regression.png'
 
 class multipleLinear extends Component {
     state = {
@@ -122,7 +123,25 @@ class multipleLinear extends Component {
         return (
             <React.Fragment>
                 <div className="ui container left aligned" style={style}>
-                    <h1 className={"centered"}>Multiple Linear Regression</h1>
+
+                    <div className="ui items">
+                        <div className="item">
+                            <div className="ui tiny image">
+                                <img src = {mlr}/>
+                            </div>
+                            <div className="content">
+                                <a className="header">Multiple Linear Regression</a>
+                                <div className="meta">Machine Learning Algorithm</div>
+                                <div className="description">
+                                    Multiple linear regression (MLR), also known simply as multiple regression, is a statistical technique that uses several explanatory variables to predict the outcome of a response variable. The goal of multiple linear regression (MLR) is to model the linear relationship between the explanatory (independent) variables and response (dependent) variable.
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <h1 className={"centered"}>University Acceptance Predictor</h1>
                     <div className="ui section divider"></div>
                     <form className="ui form" onSubmit={this.result} id={"form"}>
                         <div className="field">

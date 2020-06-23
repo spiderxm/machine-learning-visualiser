@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
+import kn from '../../assests/attachments/k nearest Neighbours.png'
 
 class knn extends Component {
     state = {
@@ -98,7 +99,25 @@ class knn extends Component {
         return (
             <React.Fragment>
                 <div className="ui container left aligned" style={style}>
-                    <h1 className={"centered"}>K-nearest neighbors </h1>
+
+                    <div className="ui items">
+                        <div className="item">
+                            <div className="ui tiny image">
+                                <img src = {kn}/>
+                            </div>
+                            <div className="content">
+                                <a className="header">K Nearest Neighbors</a>
+                                <div className="meta">Machine Learning Algorithm</div>
+                                <div className="description">
+                                    K-Nearest Neighbors (KNN) is one of the simplest algorithms used in Machine Learning for regression and classification problem. KNN algorithms use data and classify new data points based on similarity measures (e.g. distance function). Classification is done by a majority vote to its neighbors
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <h1 className={"centered"}>IRIS  </h1>
                     <div className="ui section divider"></div>
                     <form className="ui form" onSubmit={this.result} id={"form"}>
                         <div className="field">
