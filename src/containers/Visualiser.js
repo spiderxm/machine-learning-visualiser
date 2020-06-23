@@ -89,7 +89,7 @@ class MenuBar extends Component {
                 </Menu.Item>
             );
             userImage = (
-                <Menu.Item>
+                <Menu.Item style={{marginBottom: "5px"}}>
                     <div>
                         <Image style={{
                             height: "60px",
@@ -101,7 +101,9 @@ class MenuBar extends Component {
                                src={"https://storage.cloud.google.com/mlalgovisualiser/" + this.state.firebaseID + ".png"}
                                alt={"logo"}/>
                     </div>
-                    {this.state.email}
+                    <div className="ui">
+                        {this.state.email}
+                    </div>
                 </Menu.Item>
             );
         }
@@ -213,7 +215,7 @@ class MenuBar extends Component {
                         {/*        <a href="https://www.facebook.com/"><i className="github square icon big"></i></a>*/}
                         {/*    </div>*/}
                         {/*</div>*/}
-                        
+
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </div>

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-import Footer from "../Navigation/Footer1"
+import Footer from "../Navigation/Footer"
 class multipleLinear extends Component {
     state = {
         grescore: null,
