@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-
+import Footer from "../Navigation/Footer1";
 class DecisionTree extends Component {
     state = {
         max: {
@@ -219,6 +219,7 @@ class DecisionTree extends Component {
                     </form>
                     {prediction}
                 </div>
+                <Footer />
             </React.Fragment>
         );
     }

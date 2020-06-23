@@ -1,5 +1,5 @@
 import React from "react";
-
+import Footer from "../Navigation/Footer1"
 const home = (props) => {
     return (
         <React.Fragment>
@@ -28,6 +28,7 @@ const home = (props) => {
                 <div className="content">
                 </div>
             </div>
+            <Footer/>
         </React.Fragment>);
 }
 export default home

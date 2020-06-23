@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-// import {Button} from "semantic-ui-react";
-
+import Footer from "../Navigation/Footer1"
 class multipleLinear extends Component {
     state = {
         grescore: null,
@@ -174,8 +173,8 @@ class multipleLinear extends Component {
                         <button className="ui button" type="submit">Submit</button>
                     </form>
                     {probability}
-                    {/*{}*/}
                 </div>
+                <Footer />
             </React.Fragment>
         )
     }

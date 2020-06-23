@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-
+import Footer from "../Navigation/Footer"
 class linearregression extends Component {
     state = {
         result: null,
@@ -64,6 +64,7 @@ class linearregression extends Component {
                         {this.state.error}
                     </div>
                 </div>
+                <Footer/>
             </React.Fragment>
         );
     }

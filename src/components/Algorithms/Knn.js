@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-
+import Footer from "../Navigation/Footer"
 class knn extends Component {
     state = {
         sl: null,
@@ -145,7 +145,7 @@ class knn extends Component {
                     </form>
                     {prediction}
                 </div>
-
+                <Footer />
             </React.Fragment>
         )
     }

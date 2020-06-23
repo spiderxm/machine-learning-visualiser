@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-// import {Button} from "semantic-ui-react";
+import Footer from "../Navigation/Footer1"
 
 class RandomForest extends Component {
     state = {
@@ -253,6 +253,7 @@ class RandomForest extends Component {
                     </form>
                     {probability}
                 </div>
+                <Footer/>
             </React.Fragment>
         )
     }

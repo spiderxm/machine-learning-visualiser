@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-
-
+import Footer from "../Navigation/Footer"
 class SvmNew extends Component {
     state = {
         result: null,
@@ -117,8 +116,8 @@ class SvmNew extends Component {
                         <button className="ui button" type="submit">Submit</button>
                     </form>
                     {probability}
-                    {/*{}*/}
                 </div>
+                <Footer />
             </React.Fragment>
         )
     }
