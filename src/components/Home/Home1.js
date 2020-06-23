@@ -50,12 +50,12 @@ const HomepageHeading = ({mobile}) => (
                 marginTop: mobile ? '0.5em' : '1.5em',
             }}
         />
-        <Link to={"/login"}>
+        <a href={"#predict"}>
             <button primary className='ui inverted button basic' style={{color: "white"}}>
                 Start Predicting
                 <Icon name='right arrow'/>
             </button>
-        </Link>
+        </a>
     </Container>
 )
 
