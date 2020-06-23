@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Button} from "semantic-ui-react";
 import axios from 'axios'
 import {Label, Input} from "semantic-ui-react";
+import lr from '../../assests/attachments/linearregression.png'
 
 class linearregression extends Component {
     state = {
@@ -49,7 +50,28 @@ class linearregression extends Component {
         return (
             <React.Fragment>
                 <div className="ui container left aligned" style={style}>
-                    <h1 className={"centered"}>Linear Regression</h1>
+                    <div className="ui items">
+                        <div className="item">
+                            <div className="ui tiny image">
+                                <img src = {lr}/>
+                            </div>
+                            <div className="content">
+                                <a className="header">Linear Regression</a>
+                                <div className="meta">Machine Learning Algorithm</div>
+                                <div className="description">
+
+                                    Linear regression attempts to model the relationship between two variables by
+                                    fitting a linear equation (= a straight line) to the observed data. One variable is
+                                    considered to be an explanatory variable (e.g. your income), and the other is
+                                    considered to be a dependent variable (e.g. your expenses).
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <h1 className={"centered"}>Salary Predictor</h1>
                     <div className="ui section divider"></div>
                     <form className="ui form" onSubmit={this.result}>
                         <div className="field">
