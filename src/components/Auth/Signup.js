@@ -5,6 +5,7 @@ import firebase from "firebase";
 import axios from "axios";
 import {Redirect} from 'react-router-dom'
 import {Link} from 'react-router-dom'
+import Footer from '../Navigation/Footer'
 
 class Signup extends Component {
     state = {
@@ -25,8 +26,6 @@ class Signup extends Component {
         this.setState({err: null})
         this.setState({load: true})
         event.preventDefault();
-        console.log(this.state.email)
-        console.log(this.state.password)
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(response => {
                 const data = new FormData();
@@ -34,14 +33,13 @@ class Signup extends Component {
                 data.append('filename', response.user.uid + ".png");
                 axios.post("/upload", data).then((response) => {
                     this.setState({imageURL: response.data})
-                    alert("You have Signed up Successfully, please login to continue.");
+                    alert("You have Signed up Successfully.");
                     this.setState({redirect: true})
                     this.setState({load: false})
-
+                    window.location.reload();
                 });
             })
             .catch(err => {
-                console.log(err)
                     this.setState({load: false})
                     this.setState({err: err.message})
                 }
@@ -49,7 +47,7 @@ class Signup extends Component {
     }
     renderRedirect = () => {
         if (this.state.redirect) {
-            return <Redirect to='/login'/>
+            return <Redirect to='/'/>
         }
     }
 
@@ -67,50 +65,53 @@ class Signup extends Component {
             error = null;
         }
         return (
-            <Grid textAlign='center' style={{height: '100vh'}} verticalAlign='middle'>
-                <Grid.Column style={{maxWidth: 500}}>
-                    <Header as='h2' textAlign='center'>
-                        <Image src={MachineLearningLogo}/> Sign up
-                    </Header>
-                    <Form size='large' onSubmit={this.Signup}>
-                        <Segment stacked>
-                            <Form.Input
-                                fluid icon='user'
-                                type={"email"}
-                                iconPosition='left'
-                                placeholder='E-mail address'
-                                required
-                                onChange={this.emailchangeHandler}
-                            />
-                            <Form.Input
-                                fluid
-                                icon='lock'
-                                iconPosition='left'
-                                placeholder='Password'
-                                type='password'
-                                required
-                                onChange={this.passwordchangeHandler}
-                            />
-                            <input ref={(ref) => {
-                                this.uploadInput = ref;
-                            }} type="file"
-                                   accept={"image/png"}
-                                   required
-                                   className={"ui input"}
-                                   style={{marginBottom: "6px"}}
-                            />
-                            <Button color={"black"} fluid size='large' loading={this.state.load} type={"submit"}>
-                                Sign-up
-                            </Button>
-                            {error}
-                        </Segment>
-                    </Form>
-                    <Message>
-                        Already have an account? <Link to={"/login"}>Log in</Link>
-                    </Message>
-                    {this.renderRedirect()}
-                </Grid.Column>
-            </Grid>)
+            <React.Fragment>
+                <Grid textAlign='center' style={{height: '100vh'}} verticalAlign='middle'>
+                    <Grid.Column style={{maxWidth: 500}}>
+                        <Header as='h2' textAlign='center'>
+                            <Image src={MachineLearningLogo}/> Sign up
+                        </Header>
+                        <Form size='large' onSubmit={this.Signup}>
+                            <Segment stacked>
+                                <Form.Input
+                                    fluid icon='user'
+                                    type={"email"}
+                                    iconPosition='left'
+                                    placeholder='E-mail address'
+                                    required
+                                    onChange={this.emailchangeHandler}
+                                />
+                                <Form.Input
+                                    fluid
+                                    icon='lock'
+                                    iconPosition='left'
+                                    placeholder='Password'
+                                    type='password'
+                                    required
+                                    onChange={this.passwordchangeHandler}
+                                />
+                                <input ref={(ref) => {
+                                    this.uploadInput = ref;
+                                }} type="file"
+                                       accept={"image/png"}
+                                       required
+                                       className={"ui input"}
+                                       style={{marginBottom: "6px"}}
+                                />
+                                <Button color={"black"} fluid size='large' loading={this.state.load} type={"submit"}>
+                                    Sign-up
+                                </Button>
+                                {error}
+                            </Segment>
+                        </Form>
+                        <Message>
+                            Already have an account? <Link to={"/login"}>Log in</Link>
+                        </Message>
+                        {this.renderRedirect()}
+                    </Grid.Column>
+                </Grid>
+                <Footer/>
+            </React.Fragment>)
     }
 };
 

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-import DT from '../../assests/attachments/DecisionTree.png'
-
+import Footer from "../Navigation/Footer1";
 class DecisionTree extends Component {
     state = {
         max: {
@@ -125,24 +124,7 @@ class DecisionTree extends Component {
         return (
             <React.Fragment>
                 <div className="ui container left aligned" style={style}>
-                    <div className="ui items">
-                        <div className="item">
-                            <div className="ui tiny image">
-                                <img src = {DT}/>
-                            </div>
-                            <div className="content">
-                                <a className="header">Decision Tree</a>
-                                <div className="meta">Machine Learning Algorithm</div>
-                                <div className="description">
-                                    Decision tree builds regression or classification models in the form of a tree structure. It breaks down a dataset into smaller and smaller subsets while at the same time an associated decision tree is incrementally developed. The final result is a tree with decision nodes and leaf nodes.
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <h1 className={"centered"}>Diabetic Predictor</h1>
+                    <h1 className={"centered"}>Decision Tree</h1>
 
                     <div className="ui section divider"></div>
                     <form className="ui form" onSubmit={this.result} id={"form"}>
@@ -237,6 +219,7 @@ class DecisionTree extends Component {
                     </form>
                     {prediction}
                 </div>
+                <Footer />
             </React.Fragment>
         );
     }

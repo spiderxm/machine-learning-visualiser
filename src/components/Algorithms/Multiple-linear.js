@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-import {Button} from "semantic-ui-react";
-import mlr from '../../assests/attachments/multiple linear regression.png'
-
+import Footer from "../Navigation/Footer"
 class multipleLinear extends Component {
     state = {
         grescore: null,
@@ -123,25 +121,7 @@ class multipleLinear extends Component {
         return (
             <React.Fragment>
                 <div className="ui container left aligned" style={style}>
-
-                    <div className="ui items">
-                        <div className="item">
-                            <div className="ui tiny image">
-                                <img src = {mlr}/>
-                            </div>
-                            <div className="content">
-                                <a className="header">Multiple Linear Regression</a>
-                                <div className="meta">Machine Learning Algorithm</div>
-                                <div className="description">
-                                    Multiple linear regression (MLR), also known simply as multiple regression, is a statistical technique that uses several explanatory variables to predict the outcome of a response variable. The goal of multiple linear regression (MLR) is to model the linear relationship between the explanatory (independent) variables and response (dependent) variable.
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <h1 className={"centered"}>University Acceptance Predictor</h1>
+                    <h1 className={"centered"}>Multiple Linear Regression</h1>
                     <div className="ui section divider"></div>
                     <form className="ui form" onSubmit={this.result} id={"form"}>
                         <div className="field">
@@ -160,11 +140,13 @@ class multipleLinear extends Component {
                             <label>University Rating</label>
                             <input type="number" name="university rating" required min={this.state.min.universityrating}
                                    onChange={this.universityrankingchangeHandler}
-                                   max={this.state.max.universityrating} placeholder="university rating" required/>
+                                   max={this.state.max.universityrating}
+                                   placeholder="university rating"
+                            step={"any"}/>
                         </div>
                         <div className="field">
                             <label>Sop</label>
-                            <input type="number" name="sop" required min={this.state.min.sop} max={this.state.max.sop}
+                            <input type="number" name="sop"  min={this.state.min.sop} max={this.state.max.sop}
                                    onChange={this.sopchangeHandler}
                                    placeholder="sop" required/>
                         </div>
@@ -191,8 +173,8 @@ class multipleLinear extends Component {
                         <button className="ui button" type="submit">Submit</button>
                     </form>
                     {probability}
-                    {/*{}*/}
                 </div>
+                <Footer />
             </React.Fragment>
         )
     }

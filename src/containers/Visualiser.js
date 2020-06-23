@@ -12,39 +12,104 @@ import Svmlogo from "../assests/attachments/SVM.png"
 import RandomForestLogo from "../assests/attachments/RandomForest.png"
 import LogisticRegressionLogo from "../assests/attachments/logisticregression.png"
 import Decisiontreelogo from "../assests/attachments/DecisionTree.png"
-import {Button, Header, Icon, Image, Menu, Segment, Sidebar} from "semantic-ui-react";
-import axios from 'axios'
-import Imageupload from "../components/Imageupload"
+import Svm from "../components/Algorithms/SvmNew"
+import RandomForest from "../components/Algorithms/RandomForest";
+import LogisticRegression from "../components/Algorithms/LogisticRegression";
+import {Icon, Image, Menu, Segment, Sidebar} from "semantic-ui-react";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Signup"
-import Signup from "../components/Auth/Signup";
 import {Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import firebase from "firebase";
+import {Redirect} from 'react-router-dom'
 
 class MenuBar extends Component {
     state = {
         visible: false,
         imageURL: '',
-        firebaseID: null
+        redirect: false,
+        firebaseID: null,
+        email: null
+    }
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/login'/>
+        }
+    }
+
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(userAuth => {
+            this.setState({firebaseID: userAuth.uid, email: userAuth.email})
+        })
     }
 
     toggleVisibility = () => this.setState({visible: !this.state.visible})
     handlePusher = () => {
         const {visible} = this.state;
-
         if (visible) this.setState({visible: false});
     };
 
-    componentDid() {
-        this.setState({firebaseId: firebase.auth().currentUser})
-        console.log(this.state.firebaseID)
+    signout = () => {
+        firebase.auth().signOut().then(response => {
+            alert("You have logged out successfully");
+            this.setState({redirect: true})
+            window.location.reload();
+        }).catch(err => {
+            alert("You were not able to log out please try again");
+        });
+
     }
 
     render() {
         const {visible} = this.state
+        let menu = null;
+        let userImage = null;
+
+        if (this.state.firebaseID === null) {
+            menu = (
+                <React.Fragment>
+                    <Menu.Item>
+                        <Link to={"/login"}>
+                            Login
+                        </Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                        <Link to={"/register"}>
+                            Signup
+                        </Link>
+                    </Menu.Item>
+                </React.Fragment>
+            );
+        }
+
+        if (this.state.firebaseID) {
+            menu = (
+                <Menu.Item onClick={this.signout}>
+                    Logout
+                </Menu.Item>
+            );
+            userImage = (
+                <Menu.Item style={{marginBottom: "5px"}}>
+                    <div>
+                        <Image style={{
+                            height: "60px",
+                            width: "60px",
+                            padding: "auto",
+                            marginLeft: "auto",
+                            marginRight: "auto"
+                        }} circular
+                               src={"https://storage.cloud.google.com/mlalgovisualiser/" + this.state.firebaseID + ".png"}
+                               alt={"logo"}/>
+                    </div>
+                    <div className="ui">
+                        {this.state.email}
+                    </div>
+                </Menu.Item>
+            );
+        }
         return (
             <div>
+                {this.renderRedirect()}
                 <Sidebar.Pushable as={Segment}>
                     <Sidebar as={Menu}
                              animation='overlay'
@@ -54,11 +119,7 @@ class MenuBar extends Component {
                              vertical
                              style={{backgroundColor: "grey"}}
                              inverted>
-                        <Menu.Item>
-                            <div >
-                                <Image style={{height:"60px", width:"60px", padding:"auto", marginLeft:"auto", marginRight:"auto"}} circular src={"https://storage.cloud.google.com/mlalgovisualiser/cloud-engineering-1.png?authuser=1"} alt={"logo"}/>
-                            </div>
-                        </Menu.Item>
+                        {userImage}
                         <Menu.Item>
                             <Link to={"/linearregression"} onClick={() => this.setState({visible: false})}>
                                 <div style={{margin: "5px"}}>
@@ -76,16 +137,20 @@ class MenuBar extends Component {
                             Multiple Linear Regression
                         </Menu.Item>
                         <Menu.Item>
-                            <div style={{margin: "5px"}}>
-                                <Image size={"mini"} src={LogisticRegressionLogo} alt={"logo"}/>
-                            </div>
-                            Logistic Regression
+                            <Link to={"/logisticregression"} onClick={() => this.setState({visible: false})}>
+                                <div style={{margin: "5px"}}>
+                                    <Image size={"mini"} src={LogisticRegressionLogo} alt={"logo"}/>
+                                </div>
+                                Logistic Regression
+                            </Link>
                         </Menu.Item>
                         <Menu.Item>
-                            <div style={{margin: "5px"}}>
-                                <Image size={"mini"} src={Svmlogo} alt={"logo"}/>
-                            </div>
-                            Support Vector Machine
+                            <Link onClick={() => this.setState({visible: false})} to={"/svm"}>
+                                <div style={{margin: "5px"}}>
+                                    <Image size={"mini"} src={Svmlogo} alt={"logo"}/>
+                                </div>
+                                Support Vector Machine
+                            </Link>
                         </Menu.Item>
                         <Menu.Item>
                             <Link to={"/knn"} onClick={() => this.setState({visible: false})}>
@@ -105,10 +170,12 @@ class MenuBar extends Component {
 
                         </Menu.Item>
                         <Menu.Item>
-                            <div style={{margin: "5px"}}>
-                                <Image size={"mini"} src={RandomForestLogo} alt={"logo"}/>
-                            </div>
-                            Random Forest Classifier
+                            <Link to={"randomforest"} onClick={() => this.setState({visible: false})}>
+                                <div style={{margin: "5px"}}>
+                                    <Image size={"mini"} src={RandomForestLogo} alt={"logo"}/>
+                                </div>
+                                Random Forest Classifier
+                            </Link>
                         </Menu.Item>
                     </Sidebar>
                     <Sidebar.Pusher
@@ -129,19 +196,7 @@ class MenuBar extends Component {
                                 </Link>
                             </Menu.Item>
                             <Menu.Menu position="right">
-                                <Menu.Item>
-                                    <Link to={"/login"}>
-                                        Login
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item>
-                                    <Link to={"/register"}>
-                                        Signup
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item>
-                                    Logout
-                                </Menu.Item>
+                                {menu}
                             </Menu.Menu>
                         </Menu>
                         <Route path={"/linearregression"} exact render={() => (<Linearregression/>)}/>
@@ -151,6 +206,16 @@ class MenuBar extends Component {
                         <Route path={"/login"} exact render={() => <Login/>}/>
                         <Route path={"/register"} exact render={() => <Register/>}/>
                         <Route path={"/"} exact render={() => <Home/>}/>
+                        <Route path={"/svm"} exact render={() => <Svm/>}/>
+                        <Route path={"/randomforest"} exact render={() => <RandomForest/>}/>
+                        <Route path={"/logisticregression"} exact render={() => <LogisticRegression/>}/>
+                        {/*<div className="ui inverted vertical footer segment" style={{bottom: "0px", left:"0px"}}>*/}
+                        {/*    <div className="ui center aligned container " >*/}
+                        {/*        <h4 className="ui inverted header">&copy; spiderxm</h4>*/}
+                        {/*        <a href="https://www.facebook.com/"><i className="github square icon big"></i></a>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </div>
