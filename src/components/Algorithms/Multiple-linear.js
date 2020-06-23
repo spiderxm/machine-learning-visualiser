@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import axios from 'axios'
 import Footer from "../Navigation/Footer1"
+import mlr from '../../assests/attachments/multiple linear regression.png'
+import lr from "../../assests/attachments/linearregression.png";
 
 class multipleLinear extends Component {
     state = {
@@ -119,66 +121,99 @@ class multipleLinear extends Component {
             padding: "1rem",
             marginTop: "10vh",
             boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
-            backgroundColor: "black",
-            color: "white"
+            backgroundColor: "rgba(0,0,0,.85)",
+            color: "white",
+            marginBottom: "5rem"
+        }
+        const style1 = {
+            border: "1px solid grey",
+            borderRadius: "20px",
+            padding: "1rem",
+            marginTop: "10vh",
+            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
         }
         return (
             <React.Fragment>
-                <div className="ui container left aligned" style={style}>
-                    <h1 className={"centered"}>Multiple Linear Regression</h1>
-                    <div className="ui section divider"></div>
-                    <form className="ui form" onSubmit={this.result} id={"form"}>
-                        <div className="field">
-                            <label style={{color: "white"}}>Gre score</label>
-                            <input type="number" name="grescore" min={this.state.min.grescore}
-                                   onChange={this.grechangeHandler}
-                                   max={this.state.max.grescore} required placeholder="Grescore 290 - 340"/>
-                        </div>
-                        <div className="field">
-                            <label style={{color: "white"}}>Toefl Score</label>
-                            <input type="number" name="toeflscore" min={this.state.min.toeflscore}
-                                   onChange={this.toeflchangeHandler}
-                                   max={this.state.max.toeflscore} placeholder="Toefl-Score" required/>
-                        </div>
-                        <div className="field">
-                            <label style={{color: "white"}}>University Rating</label>
-                            <input type="number" name="university rating" required min={this.state.min.universityrating}
-                                   onChange={this.universityrankingchangeHandler}
-                                   max={this.state.max.universityrating}
-                                   placeholder="university rating"
-                                   step={"any"}/>
-                        </div>
-                        <div className="field">
-                            <label style={{color: "white"}}>Sop</label>
-                            <input type="number" name="sop" min={this.state.min.sop} max={this.state.max.sop}
-                                   onChange={this.sopchangeHandler}
-                                   placeholder="sop" required/>
-                        </div>
-                        <div className="field">
-                            <label style={{color: "white"}}>Lor</label>
-                            <input type="number" name="lor" min={this.state.min.lor} max={this.state.max.lor}
-                                   onChange={this.lorchangeHandler}
-                                   placeholder="lor" required/>
-                        </div>
-                        <div className="field">
-                            <label style={{color: "white"}}>Cgpa</label>
-                            <input type="number" min={this.state.min.cgpa} max={this.state.max.cgpa} name="cgpa"
-                                   step={"any"}
-                                   placeholder="cgpa" required onChange={this.cgpachangeHandler}/>
-                        </div>
-                        <div className="ui segment" style={{backgroundColor: "black"}}>
-                            <div className="field">
-                                <div className="ui white checkbox">
-                                    <input type="checkbox" name="gift" tabIndex="0"
-                                           onChange={this.researchchangeHandler}/>
-                                    <label style={{color: "white"}}>Research</label>
+                <div className="ui container left aligned" style={style1}>
+                    <div className="ui items">
+                        <div className="item">
+                            <div className="ui tiny image">
+                                <img src={mlr}/>
+                            </div>
+                            <div className="content">
+                                <a className="header">Multiple Linear Regression</a>
+                                <div className="meta">Machine Learning Algorithm</div>
+                                <div className="description">
+                                    Multiple linear regression (MLR), also known simply as multiple regression, is a
+                                    statistical technique that uses several explanatory variables to predict the outcome
+                                    of a response variable. The goal of multiple linear regression (MLR) is to model the
+                                    linear relationship between the explanatory (independent) variables and response
+                                    (dependent) variable.
+
                                 </div>
+
                             </div>
                         </div>
-                        <button className="ui button basic inverted" type="submit">Predict</button>
-                    </form>
-                    {probability}
+                    </div>
                 </div>
+                    <div className="ui container left aligned" style={style}>
+                        <h1 className={"centered"}>Multiple Linear Regression</h1>
+                        <h3>Predict chances of being selected in University</h3>
+                        <div className="ui section divider"></div>
+                        <form className="ui form" onSubmit={this.result} id={"form"}>
+                            <div className="field">
+                                <label style={{color: "white"}}>Gre score</label>
+                                <input type="number" name="grescore" min={this.state.min.grescore}
+                                       onChange={this.grechangeHandler}
+                                       max={this.state.max.grescore} required placeholder="Grescore 290 - 340"/>
+                            </div>
+                            <div className="field">
+                                <label style={{color: "white"}}>Toefl Score</label>
+                                <input type="number" name="toeflscore" min={this.state.min.toeflscore}
+                                       onChange={this.toeflchangeHandler}
+                                       max={this.state.max.toeflscore} placeholder="Toefl-Score" required/>
+                            </div>
+                            <div className="field">
+                                <label style={{color: "white"}}>University Rating</label>
+                                <input type="number" name="university rating" required
+                                       min={this.state.min.universityrating}
+                                       onChange={this.universityrankingchangeHandler}
+                                       max={this.state.max.universityrating}
+                                       placeholder="university rating"
+                                       step={"any"}/>
+                            </div>
+                            <div className="field">
+                                <label style={{color: "white"}}>Sop</label>
+                                <input type="number" name="sop" min={this.state.min.sop} max={this.state.max.sop}
+                                       onChange={this.sopchangeHandler}
+                                       placeholder="sop" required/>
+                            </div>
+                            <div className="field">
+                                <label style={{color: "white"}}>Lor</label>
+                                <input type="number" name="lor" min={this.state.min.lor} max={this.state.max.lor}
+                                       onChange={this.lorchangeHandler}
+                                       placeholder="lor" required/>
+                            </div>
+                            <div className="field">
+                                <label style={{color: "white"}}>Cgpa</label>
+                                <input type="number" min={this.state.min.cgpa} max={this.state.max.cgpa} name="cgpa"
+                                       step={"any"}
+                                       placeholder="cgpa" required onChange={this.cgpachangeHandler}/>
+                            </div>
+                            <div className="ui segment" style={{backgroundColor: "rgba(0,0,0,.85)"}}>
+                                <div className="field">
+                                    <div className="ui white checkbox">
+                                        <input type="checkbox" name="gift" tabIndex="0"
+                                               onChange={this.researchchangeHandler}/>
+                                        <label style={{color: "white"}}>Research</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button className="ui button basic inverted" type="submit">Predict</button>
+                        </form>
+                        {probability}
+                    </div>
+
                 <Footer/>
             </React.Fragment>
         )

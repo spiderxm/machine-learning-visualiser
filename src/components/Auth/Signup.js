@@ -30,7 +30,7 @@ class Signup extends Component {
             .then(response => {
                 const data = new FormData();
                 data.append('file', this.uploadInput.files[0]);
-                data.append('filename', response.user.uid + ".png");
+                data.append('filename', response.user.uid + ".jpeg");
                 axios.post("/upload", data).then((response) => {
                     this.setState({imageURL: response.data})
                     alert("You have Signed up Successfully.");
@@ -93,7 +93,7 @@ class Signup extends Component {
                                 <input ref={(ref) => {
                                     this.uploadInput = ref;
                                 }} type="file"
-                                       accept={"image/png"}
+                                       accept={"image/jpeg"}
                                        required
                                        className={"ui input"}
                                        style={{marginBottom: "6px"}}

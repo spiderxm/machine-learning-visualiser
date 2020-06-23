@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import axios from 'axios'
 import Footer from "../Navigation/Footer"
+import kn from '../../assests/attachments/k nearest Neighbours.png'
+
 class knn extends Component {
     state = {
         sl: null,
@@ -104,11 +106,39 @@ class knn extends Component {
             padding: "2rem",
             marginTop: "10vh",
             boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
-            backgroundColor: "black",
-            color: "white"
+            backgroundColor: "rgba(0,0,0,.85)",
+            color: "white",
+            marginBottom:"5rem"
+
+        }
+        const style1 = {
+            border: "1px solid grey",
+            borderRadius: "20px",
+            padding: "1rem",
+            marginTop: "10vh",
+            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
         }
         return (
             <React.Fragment>
+                <div className="ui container left aligned" style={style1}>
+                    <div className="ui items">
+                        <div className="item">
+                            <div className="ui tiny image">
+                                <img src = {kn}/>
+                            </div>
+                            <div className="content">
+                                <a className="header">K Nearest Neighbors</a>
+                                <div className="meta">Machine Learning Algorithm</div>
+                                <div className="description">
+                                    K-Nearest Neighbors (KNN) is one of the simplest algorithms used in Machine Learning for regression and classification problem. KNN algorithms use data and classify new data points based on similarity measures (e.g. distance function). Classification is done by a majority vote to its neighbors
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <div className="ui container left aligned" style={style}>
                     <h1 className={"centered"}>K-nearest neighbors </h1>
                     <h3 className={"centered"}>Predict Class of Iris Flower </h3>

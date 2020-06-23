@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import axios from 'axios'
 import Footer from "../Navigation/Footer1"
+import randomforest from "../../assests/attachments/RandomForest.png";
 
 class RandomForest extends Component {
     state = {
@@ -44,21 +45,20 @@ class RandomForest extends Component {
             sulphates: 2,
             alcohol: 14.9,
         },
-        step : {
-                fixed_acidity: .1,
-                volatile_acidity: 0.01,
-                citric_acid: .1,
-                residual_sugar: 0.1,
-                chlorides: 0.001,
-                free_sulfur_dioxide: 1,
-                total_sulfur_dioxide: 1,
-                density: 0.00001,
-                pH: 0.01,
-                sulphates: .01,
-                alcohol: .1,
+        step: {
+            fixed_acidity: .1,
+            volatile_acidity: 0.01,
+            citric_acid: .1,
+            residual_sugar: 0.1,
+            chlorides: 0.001,
+            free_sulfur_dioxide: 1,
+            total_sulfur_dioxide: 1,
+            density: 0.00001,
+            pH: 0.01,
+            sulphates: .01,
+            alcohol: .1,
         }
     }
-
 
 
     onchange = (event, name) => {
@@ -93,7 +93,8 @@ class RandomForest extends Component {
             console.log(err);
             this.setState({
                 result: null,
-                showresult: false
+                showresult: false,
+                error: true
             })
         })
     }
@@ -134,17 +135,28 @@ class RandomForest extends Component {
     sulphateschangeHandler = (event) => {
         this.setState({sulphates: event.target.value})
     }
+
     render() {
         let probability = null;
         if (this.state.result) {
             probability = (
                 <div>
                     <div className="ui section divider"></div>
-                    <h3><strong>Wine Quality  is : {this.state.result.result}</strong></h3>
+                    <h3><strong>Wine Quality is : {this.state.result.result} / 10</strong></h3>
                 </div>
             )
         }
         const style = {
+            border: "1px solid grey",
+            borderRadius: "20px",
+            padding: "1rem",
+            marginTop: "5vh",
+            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
+            backgroundColor: "rgba(0,0,0,.85)",
+            color: "white",
+            marginBottom: "5rem"
+        }
+        const style1 = {
             border: "1px solid grey",
             borderRadius: "20px",
             padding: "1rem",
@@ -153,12 +165,33 @@ class RandomForest extends Component {
         }
         return (
             <React.Fragment>
+                <div className="ui container left aligned" style={style1}>
+                    <div className="ui items">
+                        <div className="item">
+                            <div className="ui tiny image">
+                                <img src={randomforest}/>
+                            </div>
+                            <div className="content">
+                                <a className="header">Random Forest</a>
+                                <div className="meta">Machine Learning Algorithm</div>
+                                <div className="description">
+                                    Random forests or random decision forests are an ensemble learning method for
+                                    classification, regression and other tasks that operate by constructing a multitude
+                                    of decision trees at training time and outputting the class that is the mode of the
+                                    classes or mean prediction of the individual trees.
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="ui container left aligned" style={style}>
                     <h1 className={"centered"}>Random Forest</h1>
+                    <h3>Predict quality of red wine</h3>
                     <div className="ui section divider"></div>
                     <form className="ui form" onSubmit={this.result} id={"form"}>
                         <div className="field">
-                            <label>Fixed Acidity</label>
+                            <label style={{color: "white"}}>Fixed Acidity</label>
                             <input type="number"
                                    name="fixed_acidity"
                                    min={this.state.min.fixed_acidity}
@@ -169,29 +202,29 @@ class RandomForest extends Component {
                                    placeholder="Fixed-Acidity"/>
                         </div>
                         <div className="field">
-                            <label>Volatile Acid</label>
+                            <label style={{color: "white"}}>Volatile Acid</label>
                             <input type="number" name="volatile_acidity" min={this.state.min.volatile_acidity}
                                    onChange={this.volatile_aciditychangeHandler}
                                    step={this.state.step.volatile_acidity}
                                    max={this.state.max.volatile_acidity} placeholder="Volatile Acid" required/>
                         </div>
                         <div className="field">
-                            <label>Citric Acid</label>
+                            <label style={{color: "white"}}>Citric Acid</label>
                             <input type="number" name="citric_acid" required min={this.state.min.citric_acid}
                                    onChange={this.citric_acidchangeHandler}
                                    step={this.state.step.citric_acid}
-                                   max={this.state.max.citric_acid} placeholder="Citric Acid" />
+                                   max={this.state.max.citric_acid} placeholder="Citric Acid"/>
                         </div>
                         <div className="field">
-                            <label>Residual Sugar</label>
+                            <label style={{color: "white"}}>Residual Sugar</label>
                             <input type="number" name="residual_sugar"
                                    step={this.state.step.residual_sugar}
                                    required min={this.state.min.residual_sugar} max={this.state.max.residual_sugar}
                                    onChange={this.residual_sugarchangeHandler}
-                                   placeholder="Residual Sugar" />
+                                   placeholder="Residual Sugar"/>
                         </div>
                         <div className="field">
-                            <label>Chlorides</label>
+                            <label style={{color: "white"}}>Chlorides</label>
                             <input type="number" name="chlorides"
                                    step={this.state.step.chlorides}
                                    min={this.state.min.chlorides} max={this.state.max.chlorides}
@@ -199,24 +232,26 @@ class RandomForest extends Component {
                                    placeholder="chlorides" required/>
                         </div>
                         <div className="field">
-                            <label>Free Sulphur Dioxide</label>
+                            <label style={{color: "white"}}>Free Sulphur Dioxide</label>
                             <input type="number" min={this.state.min.free_sulfur_dioxide}
                                    step={this.state.step.free_sulfur_dioxide}
                                    max={this.state.max.free_sulfur_dioxide} name="free_sulfur_dioxide"
-                                   placeholder="Free Sulphur Dioxide" required onChange={this.free_sulfur_dioxidechangeHandler}/>
+                                   placeholder="Free Sulphur Dioxide" required
+                                   onChange={this.free_sulfur_dioxidechangeHandler}/>
                         </div>
 
 
                         <div className="field">
-                            <label>Total Sulphur Dioxide</label>
+                            <label style={{color: "white"}}>Total Sulphur Dioxide</label>
                             <input type="number" min={this.state.min.total_sulfur_dioxide}
                                    step={this.state.step.total_sulfur_dioxide}
                                    max={this.state.max.total_sulfur_dioxide} name="total_sulfur_dioxide"
-                                   placeholder="Total Sulphur Dioxide" required onChange={this.total_sulfur_dioxidechangeHandler}/>
+                                   placeholder="Total Sulphur Dioxide" required
+                                   onChange={this.total_sulfur_dioxidechangeHandler}/>
                         </div>
 
                         <div className="field">
-                            <label>Density</label>
+                            <label style={{color: "white"}}>Density</label>
                             <input type="number" min={this.state.min.density}
                                    step={this.state.step.density}
                                    max={this.state.max.density} name="density"
@@ -224,7 +259,7 @@ class RandomForest extends Component {
                         </div>
 
                         <div className="field">
-                            <label>pH Value</label>
+                            <label style={{color: "white"}}>pH Value</label>
                             <input type="number" min={this.state.min.pH}
                                    step={this.state.step.pH}
                                    max={this.state.max.pH} name="pH"
@@ -232,7 +267,7 @@ class RandomForest extends Component {
                         </div>
 
                         <div className="field">
-                            <label>Alcohol Content</label>
+                            <label style={{color: "white"}}>Alcohol Content</label>
                             <input type="number" min={this.state.min.alcohol}
                                    step={this.state.step.alcohol}
                                    max={this.state.max.alcohol} name="alcohol"
@@ -240,7 +275,7 @@ class RandomForest extends Component {
                         </div>
 
                         <div className="field">
-                            <label>Sulphates</label>
+                            <label style={{color: "white"}}>Sulphates</label>
                             <input type="number" min={this.state.min.sulphates}
                                    step={this.state.step.sulphates}
                                    max={this.state.max.sulphates}
@@ -249,7 +284,7 @@ class RandomForest extends Component {
                                    required onChange={this.sulphateschangeHandler}/>
                         </div>
 
-                        <button className="ui button" type="submit">Submit</button>
+                        <button className="ui button inverted basic" type="submit">Submit</button>
                     </form>
                     {probability}
                 </div>

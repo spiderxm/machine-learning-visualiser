@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import axios from 'axios'
 import Footer from "../Navigation/Footer1";
+import DT from '../../assests/attachments/DecisionTree.png'
+
 class DecisionTree extends Component {
     state = {
         max: {
@@ -94,12 +96,19 @@ class DecisionTree extends Component {
 
     render() {
         let prediction = null;
+        let diabetes = null;
         if (this.state.result) {
+            if (this.state.result.result === 0) {
+                diabetes = "No";
+            }
+            if (this.state.result.result === 1) {
+                diabetes = "Yes";
+            }
             prediction = (
                 <div>
                     <div className="ui section divider"></div>
-                    <h3 style={{color: "blue"}}>
-                        <strong>Probability of your admission is : {this.state.result.result}</strong>
+                    <h3>
+                        <strong>Prediction of model : {diabetes}</strong>
                     </h3>
                 </div>
             );
@@ -107,6 +116,7 @@ class DecisionTree extends Component {
         if (this.state.error) {
             prediction = (
                 <div>
+                    <div className="ui section divider"></div>
                     <h3 style={{color: "red"}}>
                         <strong>There is some error please try again</strong>
                     </h3>
@@ -118,18 +128,44 @@ class DecisionTree extends Component {
             borderRadius: "20px",
             padding: "2rem",
             marginTop: "10vh",
-            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)"
-        }
+            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
+            backgroundColor: "rgba(0,0,0,.85)",
+            color: "white",
+            marginBottom:"5rem"
 
+        }
+        const style1 = {
+            border: "1px solid grey",
+            borderRadius: "20px",
+            padding: "1rem",
+            marginTop: "10vh",
+            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
+        }
         return (
             <React.Fragment>
+                <div className={"ui container left aligned"} style={style1}>
+                    <div className="ui items">
+                        <div className="item">
+                            <div className="ui tiny image">
+                                <img src = {DT}/>
+                            </div>
+                            <div className="content">
+                                <a className="header">Decision Tree</a>
+                                <div className="meta">Machine Learning Algorithm</div>
+                                <div className="description">
+                                    Decision tree builds regression or classification models in the form of a tree structure. It breaks down a dataset into smaller and smaller subsets while at the same time an associated decision tree is incrementally developed. The final result is a tree with decision nodes and leaf nodes.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="ui container left aligned" style={style}>
                     <h1 className={"centered"}>Decision Tree</h1>
-
+                    <h3>Predict diabetes</h3>
                     <div className="ui section divider"></div>
                     <form className="ui form" onSubmit={this.result} id={"form"}>
                         <div className="field">
-                            <label>Age</label>
+                            <label style={{color: "white"}}>Age</label>
                             <input type="number"
                                    name="age" min={this.state.min.Age}
                                    onChange={this.agechangeHandler}
@@ -139,7 +175,7 @@ class DecisionTree extends Component {
                                    step={1}/>
                         </div>
                         <div className="field">
-                            <label>BMI</label>
+                            <label style={{color: "white"}}>BMI</label>
                             <input type="number"
                                    name="bmi"
                                    min={this.state.min.BMI}
@@ -150,7 +186,7 @@ class DecisionTree extends Component {
                                    step={.1}/>
                         </div>
                         <div className="field">
-                            <label>Blood Pressure</label>
+                            <label style={{color: "white"}}>Blood Pressure</label>
                             <input type="number"
                                    name="bloodpressure"
                                    min={this.state.min.BloodPressure}
@@ -161,7 +197,7 @@ class DecisionTree extends Component {
                                    step={1}/>
                         </div>
                         <div className="field">
-                            <label>Skin Thickness</label>
+                            <label style={{color: "white"}}>Skin Thickness</label>
                             <input type="number"
                                    name="skin thickness"
                                    min={this.state.min.SkinThickness}
@@ -172,7 +208,7 @@ class DecisionTree extends Component {
                                    step={1}/>
                         </div>
                         <div className="field">
-                            <label>Insulin</label>
+                            <label style={{color: "white"}}>Insulin</label>
                             <input type="number"
                                    name="insulin"
                                    min={this.state.min.Insulin}
@@ -183,7 +219,7 @@ class DecisionTree extends Component {
                                    step={1}/>
                         </div>
                         <div className="field">
-                            <label>Diabetes Pedigree Function</label>
+                            <label style={{color: "white"}}>Diabetes Pedigree Function</label>
                             <input type="number"
                                    name="Diabetes Pedigree Function"
                                    min={this.state.min.DiabetesPedigreeFunction}
@@ -194,7 +230,7 @@ class DecisionTree extends Component {
                                    step={.001}/>
                         </div>
                         <div className="field">
-                            <label>Glucose</label>
+                            <label style={{color: "white"}}>Glucose</label>
                             <input type="number"
                                    name="glucose"
                                    min={this.state.min.Glucose}
@@ -205,7 +241,7 @@ class DecisionTree extends Component {
                                    step={1}/>
                         </div>
                         <div className="field">
-                            <label>Pregnancies</label>
+                            <label style={{color: "white"}}>Pregnancies</label>
                             <input type="number"
                                    name="pregnancies"
                                    min={this.state.min.Pregnancies}
@@ -215,11 +251,11 @@ class DecisionTree extends Component {
                                    required
                                    step={1}/>
                         </div>
-                        <button className="ui button" type="submit">Submit</button>
+                        <button className="ui button inverted basic" type="submit">Predict</button>
                     </form>
                     {prediction}
                 </div>
-                <Footer />
+                <Footer/>
             </React.Fragment>
         );
     }

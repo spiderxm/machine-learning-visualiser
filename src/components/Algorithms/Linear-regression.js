@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import axios from 'axios'
 import Footer from "../Navigation/Footer"
+import lr from '../../assests/attachments/linearregression.png'
 
 class linearregression extends Component {
     state = {
@@ -39,10 +40,18 @@ class linearregression extends Component {
             border: "1px solid grey",
             borderRadius: "20px",
             padding: "1rem",
+            marginTop: "5vh",
+            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
+            backgroundColor: "rgba(0,0,0,.85)",
+            color: "white",
+            marginBottom: "5rem"
+        }
+        const style1 = {
+            border: "1px solid grey",
+            borderRadius: "20px",
+            padding: "1rem",
             marginTop: "10vh",
             boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
-            backgroundColor: "black",
-            color: "white"
         }
         var prediction = null;
         if (this.state.showresult && !this.state.error) {
@@ -65,6 +74,27 @@ class linearregression extends Component {
         }
         return (
             <React.Fragment>
+                <div className="ui container left aligned" style={style1}>
+                    <div className="ui items">
+                        <div className="item">
+                            <div className="ui tiny image">
+                                <img src = {lr}/>
+                            </div>
+                            <div className="content">
+                                <a className="header">Linear Regression</a>
+                                <div className="meta">Machine Learning Algorithm</div>
+                                <div className="description">
+
+                                    Linear regression attempts to model the relationship between two variables by
+                                    fitting a linear equation (= a straight line) to the observed data. One variable is
+                                    considered to be an explanatory variable (e.g. your experience), and the other is
+                                    considered to be a dependent variable (e.g. your salary).
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="ui container left aligned" style={style}>
                     <h1 className={"centered"}>Linear Regression</h1>
                     <h3>Predict your salary</h3>

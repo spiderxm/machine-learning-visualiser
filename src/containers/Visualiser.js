@@ -22,7 +22,6 @@ import {Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import firebase from "firebase";
 import {Redirect} from 'react-router-dom'
-
 class MenuBar extends Component {
     state = {
         visible: false,
@@ -98,7 +97,7 @@ class MenuBar extends Component {
                             marginLeft: "auto",
                             marginRight: "auto"
                         }} circular
-                               src={"https://storage.cloud.google.com/mlalgovisualiser/" + this.state.firebaseID + ".png"}
+                               src={"https://storage.cloud.google.com/mlalgovisualiser/" + this.state.firebaseID + ".jpeg"}
                                alt={"logo"}/>
                     </div>
                     <div className="ui">
