@@ -73,11 +73,21 @@ class knn extends Component {
     render() {
         let prediction = null;
         if (this.state.result) {
+            let classofflower = null;
+            if(this.state.result.result === 0){
+                classofflower = "Setosa";
+            }
+            if(this.state.result.result === 1){
+                classofflower = "Versicolor";
+            }
+            if(this.state.result.result === 2){
+                classofflower = "Virgincia";
+            }
             prediction = (
                 <div>
                     <div className="ui section divider"></div>
-                    <h3 style={{color: "blue"}}><strong>Class for dimensions provided by you
-                        : {this.state.result.result}</strong></h3>
+                    <h3><strong>Iris flower belong to
+                        : {classofflower} class</strong></h3>
                 </div>)
         }
         if (this.state.error === true) {
@@ -93,16 +103,19 @@ class knn extends Component {
             borderRadius: "20px",
             padding: "2rem",
             marginTop: "10vh",
-            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)"
+            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
+            backgroundColor: "black",
+            color: "white"
         }
         return (
             <React.Fragment>
                 <div className="ui container left aligned" style={style}>
                     <h1 className={"centered"}>K-nearest neighbors </h1>
+                    <h3 className={"centered"}>Predict Class of Iris Flower </h3>
                     <div className="ui section divider"></div>
                     <form className="ui form" onSubmit={this.result} id={"form"}>
                         <div className="field">
-                            <label>Sepal Length</label>
+                            <label style={{color: "white"}}>Sepal Length</label>
                             <input type="number"
                                    name="sepallength" min={this.state.min.sepallength}
                                    onChange={this.slchangeHandler}
@@ -112,7 +125,7 @@ class knn extends Component {
                                    step={.1}/>
                         </div>
                         <div className="field">
-                            <label>Sepal width</label>
+                            <label style={{color: "white"}}>Sepal width</label>
                             <input type="number"
                                    name="sepalwidth" min={this.state.min.sepalwidth}
                                    onChange={this.swchangeHandler}
@@ -122,7 +135,7 @@ class knn extends Component {
                                    step={.1}/>
                         </div>
                         <div className="field">
-                            <label>Petal Length</label>
+                            <label style={{color: "white"}}>Petal Length</label>
                             <input type="number"
                                    name="petallength" min={this.state.min.petallength}
                                    onChange={this.plchangeHandler}
@@ -132,7 +145,7 @@ class knn extends Component {
                                    step={.1}/>
                         </div>
                         <div className="field">
-                            <label>Petal Width</label>
+                            <label style={{color: "white"}}>Petal Width</label>
                             <input type="number"
                                    name="petalwidth" min={this.state.min.petalwidth}
                                    onChange={this.pwchangeHandler}
@@ -141,7 +154,7 @@ class knn extends Component {
                                    required
                                    step={.1}/>
                         </div>
-                        <button className="ui button" type="submit">Submit</button>
+                        <button className="ui inverted basic button" type="submit">Predict</button>
                     </form>
                     {prediction}
                 </div>

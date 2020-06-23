@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import axios from 'axios'
 import Footer from "../Navigation/Footer"
+
 class linearregression extends Component {
     state = {
         result: null,
@@ -28,6 +29,7 @@ class linearregression extends Component {
             })
         } else {
             this.setState({error: "Input is not valid it must be greater than or equal to zero"})
+            this.setState({result: null, showresult: false})
         }
     }
 
@@ -38,24 +40,42 @@ class linearregression extends Component {
             borderRadius: "20px",
             padding: "1rem",
             marginTop: "10vh",
-            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)"
+            boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
+            backgroundColor: "black",
+            color: "white"
         }
         var prediction = null;
         if (this.state.showresult && !this.state.error) {
-            prediction = <div>prediction for your case is : {this.state.result.result.toFixed(0)} dollars</div>;
+            prediction = (
+                <React.Fragment>
+                    <div>
+                        <div className="ui section divider"></div>
+                        <h3><strong>Salary Predicted by Linear regression model is : ${this.state.result.result.toFixed(2)} </strong></h3>
+                    </div>
+                </React.Fragment>);
+        }
+        if (this.state.error) {
+            prediction = (
+                <React.Fragment>
+                    <h3>
+                        There is some error please try again later
+                    </h3>
+                </React.Fragment>
+            )
         }
         return (
             <React.Fragment>
                 <div className="ui container left aligned" style={style}>
                     <h1 className={"centered"}>Linear Regression</h1>
-                    <div className="ui section divider"></div>
+                    <h3>Predict your salary</h3>
+                    <div className="ui section divider" style={{color: "white"}}></div>
                     <form className="ui form" onSubmit={this.result}>
                         <div className="field">
-                            <label>Enter no. of years of experience</label>
-                            <input type="number" min="0" onChange={this.onchange} placeholder={"No. of years"}
-                                   required/>
+                            <label style={{color: "white"}}>Experience</label>
+                            <input type="number" min="0" max = "60" onChange={this.onchange} placeholder={"Experience (in years)"}
+                                   required step={".1"}/>
                         </div>
-                        <button type={"submit"} className="ui button">Click to get result</button>
+                        <button type={"submit"} className="ui inverted basic button">Predict</button>
                     </form>
                     {/*<div style={{margin: "10px 0px"}}>*/}
                     {/*</div>*/}

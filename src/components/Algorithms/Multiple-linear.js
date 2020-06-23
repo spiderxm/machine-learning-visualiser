@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import axios from 'axios'
-import Footer from "../Navigation/Footer"
+import Footer from "../Navigation/Footer1"
+
 class multipleLinear extends Component {
     state = {
         grescore: null,
@@ -107,7 +108,8 @@ class multipleLinear extends Component {
             probability = (
                 <div>
                     <div className="ui section divider"></div>
-                    <h3><strong>Probability of your admission is : {this.state.result.result}</strong></h3>
+                    <h3><strong>Chances of getting into desired college are
+                        : {(this.state.result.result * 100).toFixed(2)} %</strong></h3>
                 </div>
             )
         }
@@ -117,6 +119,8 @@ class multipleLinear extends Component {
             padding: "1rem",
             marginTop: "10vh",
             boxShadow: "0px 2px 11px 6px rgba(0,0,0,.3)",
+            backgroundColor: "black",
+            color: "white"
         }
         return (
             <React.Fragment>
@@ -125,56 +129,57 @@ class multipleLinear extends Component {
                     <div className="ui section divider"></div>
                     <form className="ui form" onSubmit={this.result} id={"form"}>
                         <div className="field">
-                            <label>Gre score</label>
+                            <label style={{color: "white"}}>Gre score</label>
                             <input type="number" name="grescore" min={this.state.min.grescore}
                                    onChange={this.grechangeHandler}
                                    max={this.state.max.grescore} required placeholder="Grescore 290 - 340"/>
                         </div>
                         <div className="field">
-                            <label>Toefl Score</label>
+                            <label style={{color: "white"}}>Toefl Score</label>
                             <input type="number" name="toeflscore" min={this.state.min.toeflscore}
                                    onChange={this.toeflchangeHandler}
                                    max={this.state.max.toeflscore} placeholder="Toefl-Score" required/>
                         </div>
                         <div className="field">
-                            <label>University Rating</label>
+                            <label style={{color: "white"}}>University Rating</label>
                             <input type="number" name="university rating" required min={this.state.min.universityrating}
                                    onChange={this.universityrankingchangeHandler}
                                    max={this.state.max.universityrating}
                                    placeholder="university rating"
-                            step={"any"}/>
+                                   step={"any"}/>
                         </div>
                         <div className="field">
-                            <label>Sop</label>
-                            <input type="number" name="sop"  min={this.state.min.sop} max={this.state.max.sop}
+                            <label style={{color: "white"}}>Sop</label>
+                            <input type="number" name="sop" min={this.state.min.sop} max={this.state.max.sop}
                                    onChange={this.sopchangeHandler}
                                    placeholder="sop" required/>
                         </div>
                         <div className="field">
-                            <label>Lor</label>
+                            <label style={{color: "white"}}>Lor</label>
                             <input type="number" name="lor" min={this.state.min.lor} max={this.state.max.lor}
                                    onChange={this.lorchangeHandler}
                                    placeholder="lor" required/>
                         </div>
                         <div className="field">
-                            <label>Cgpa</label>
-                            <input type="number" min={this.state.min.cgpa} max={this.state.max.cgpa} name="cgpa" step={"any"}
+                            <label style={{color: "white"}}>Cgpa</label>
+                            <input type="number" min={this.state.min.cgpa} max={this.state.max.cgpa} name="cgpa"
+                                   step={"any"}
                                    placeholder="cgpa" required onChange={this.cgpachangeHandler}/>
                         </div>
-                        <div className="ui segment">
+                        <div className="ui segment" style={{backgroundColor: "black"}}>
                             <div className="field">
-                                <div className="ui toggle checkbox">
+                                <div className="ui white checkbox">
                                     <input type="checkbox" name="gift" tabIndex="0"
                                            onChange={this.researchchangeHandler}/>
-                                    <label>Research</label>
+                                    <label style={{color: "white"}}>Research</label>
                                 </div>
                             </div>
                         </div>
-                        <button className="ui button" type="submit">Submit</button>
+                        <button className="ui button basic inverted" type="submit">Predict</button>
                     </form>
                     {probability}
                 </div>
-                <Footer />
+                <Footer/>
             </React.Fragment>
         )
     }

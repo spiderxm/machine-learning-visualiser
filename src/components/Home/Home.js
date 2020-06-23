@@ -9,18 +9,16 @@ import knn from '../../assests/attachments/k nearest Neighbours.png'
 import SVM from '../../assests/attachments/SVM.png'
 import {Link} from 'react-router-dom'
 import Randomforestlogo from "../../assests/attachments/RandomForest.png"
-
 const home = (props) => {
     return (
         <React.Fragment>
-
             <div className="ui three column doubling stackable grid container" style={{marginTop:"10vh"}}>
                 <div className="column">
                     <div className={"ui"} style={{display: "flex", justifyContent: "center"}}>
                         <Link to={"/svm"}>
                         <div className="ui card" style={{height: "350px"}}>
                             <Link class="image" to={"linearregression"}>
-                                <img src={linearregression} style={{height: "280px", width: "300px"}}/>
+                                <img src={linearregression} style={{height: "270px", width: "300px"}}/>
 
                             </Link>
                             <div className="content">
@@ -38,7 +36,7 @@ const home = (props) => {
                         <Link to={"/logisticregression"}>
                             <div className="ui card" style={{height: "350px"}}>
                                 <a className="image" href="#">
-                                    <img src={logisticregression} style={{height: "280px", width: "300px"}}/>
+                                    <img src={logisticregression} style={{height: "270px", width: "300px"}}/>
 
                                 </a>
                                 <div className="content">
@@ -57,7 +55,7 @@ const home = (props) => {
                         <Link to={"/svm"}>
                             <div className="ui card" style={{height: "350px"}}>
                                 <a className="image" href="#">
-                                    <img src={SVM} style={{height: "280px", width: "300px"}}/>
+                                    <img src={SVM} style={{height: "250px", width: "300px"}}/>
 
                                 </a>
                                 <div className="content">
@@ -147,8 +145,6 @@ const home = (props) => {
             </div>
 
             <Footer/>
-
-            )
 
         </React.Fragment>);
 }
