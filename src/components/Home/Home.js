@@ -43,7 +43,7 @@ const HomepageHeading = ({ mobile }) => (
   <Container text>
     <Header
       as='h1'
-      content='Imagine-a-Company'
+      content='Predictions Via Machine Learning Algorithms'
       inverted
       style={{
         fontSize: mobile ? '2em' : '4em',
@@ -54,7 +54,7 @@ const HomepageHeading = ({ mobile }) => (
     />
     <Header
       as='h2'
-      content='Do whatever you want when you want to.'
+      content='Computers are able to see, hear and learn.  Welcome to the future.'
       inverted
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
@@ -108,7 +108,7 @@ class DesktopContainer extends Component {
           </Segment>
         </Visibility>
 
-        {children}
+
       </Responsive>
     )
   }
