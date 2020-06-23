@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-import {Button} from "semantic-ui-react";
+// import {Button} from "semantic-ui-react";
 
 class multipleLinear extends Component {
     state = {
@@ -141,11 +141,13 @@ class multipleLinear extends Component {
                             <label>University Rating</label>
                             <input type="number" name="university rating" required min={this.state.min.universityrating}
                                    onChange={this.universityrankingchangeHandler}
-                                   max={this.state.max.universityrating} placeholder="university rating" required/>
+                                   max={this.state.max.universityrating}
+                                   placeholder="university rating"
+                            step={"any"}/>
                         </div>
                         <div className="field">
                             <label>Sop</label>
-                            <input type="number" name="sop" required min={this.state.min.sop} max={this.state.max.sop}
+                            <input type="number" name="sop"  min={this.state.min.sop} max={this.state.max.sop}
                                    onChange={this.sopchangeHandler}
                                    placeholder="sop" required/>
                         </div>

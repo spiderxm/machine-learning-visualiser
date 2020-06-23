@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios'
-import {Button} from "semantic-ui-react";
+// import {Button} from "semantic-ui-react";
 
 class RandomForest extends Component {
     state = {
@@ -180,7 +180,7 @@ class RandomForest extends Component {
                             <input type="number" name="citric_acid" required min={this.state.min.citric_acid}
                                    onChange={this.citric_acidchangeHandler}
                                    step={this.state.step.citric_acid}
-                                   max={this.state.max.citric_acid} placeholder="Citric Acid" required/>
+                                   max={this.state.max.citric_acid} placeholder="Citric Acid" />
                         </div>
                         <div className="field">
                             <label>Residual Sugar</label>
@@ -188,7 +188,7 @@ class RandomForest extends Component {
                                    step={this.state.step.residual_sugar}
                                    required min={this.state.min.residual_sugar} max={this.state.max.residual_sugar}
                                    onChange={this.residual_sugarchangeHandler}
-                                   placeholder="Residual Sugar" required/>
+                                   placeholder="Residual Sugar" />
                         </div>
                         <div className="field">
                             <label>Chlorides</label>
@@ -202,7 +202,7 @@ class RandomForest extends Component {
                             <label>Free Sulphur Dioxide</label>
                             <input type="number" min={this.state.min.free_sulfur_dioxide}
                                    step={this.state.step.free_sulfur_dioxide}
-                                   max={this.state.max.free_sulfur_dioxide} name="free_sulfur_dioxide" step={"any"}
+                                   max={this.state.max.free_sulfur_dioxide} name="free_sulfur_dioxide"
                                    placeholder="Free Sulphur Dioxide" required onChange={this.free_sulfur_dioxidechangeHandler}/>
                         </div>
 
@@ -211,7 +211,7 @@ class RandomForest extends Component {
                             <label>Total Sulphur Dioxide</label>
                             <input type="number" min={this.state.min.total_sulfur_dioxide}
                                    step={this.state.step.total_sulfur_dioxide}
-                                   max={this.state.max.total_sulfur_dioxide} name="total_sulfur_dioxide" step={"any"}
+                                   max={this.state.max.total_sulfur_dioxide} name="total_sulfur_dioxide"
                                    placeholder="Total Sulphur Dioxide" required onChange={this.total_sulfur_dioxidechangeHandler}/>
                         </div>
 
@@ -219,7 +219,7 @@ class RandomForest extends Component {
                             <label>Density</label>
                             <input type="number" min={this.state.min.density}
                                    step={this.state.step.density}
-                                   max={this.state.max.density} name="density" step={"any"}
+                                   max={this.state.max.density} name="density"
                                    placeholder="Density" required onChange={this.densitychangeHandler}/>
                         </div>
 
@@ -227,7 +227,7 @@ class RandomForest extends Component {
                             <label>pH Value</label>
                             <input type="number" min={this.state.min.pH}
                                    step={this.state.step.pH}
-                                   max={this.state.max.pH} name="pH" step={"any"}
+                                   max={this.state.max.pH} name="pH"
                                    placeholder="pH" required onChange={this.pHchangeHandler}/>
                         </div>
 
@@ -235,7 +235,7 @@ class RandomForest extends Component {
                             <label>Alcohol Content</label>
                             <input type="number" min={this.state.min.alcohol}
                                    step={this.state.step.alcohol}
-                                   max={this.state.max.alcohol} name="alcohol" step={"any"}
+                                   max={this.state.max.alcohol} name="alcohol"
                                    placeholder="Alcohol Content" required onChange={this.alcoholchangeHandler}/>
                         </div>
 
@@ -245,7 +245,6 @@ class RandomForest extends Component {
                                    step={this.state.step.sulphates}
                                    max={this.state.max.sulphates}
                                    name="alcohol"
-                                   step={"any"}
                                    placeholder="Sulphates"
                                    required onChange={this.sulphateschangeHandler}/>
                         </div>

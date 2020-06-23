@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
 import MachineLearningLogo from '../../assests/attachments/Machine Learning.png'
 import firebase from "firebase";
-import {useHistory} from "react-router-dom";
 import {Redirect, Link} from 'react-router-dom'
 
 class Login extends Component {
@@ -36,7 +35,8 @@ class Login extends Component {
                 this.setState({load:false})
                 this.setState({loggedIn: true})
                 alert("You have logged in Successfully");
-                    this.setState({redirect: true})
+                this.setState({redirect: true})
+                window.location.reload();
                 }
             )
             .catch(err => {

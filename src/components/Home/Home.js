@@ -1,5 +1,4 @@
 import React from "react";
-import AlgoCard from '../Algorithms/Algo-cards/Algo-card'
 
 const home = (props) => {
     return (
@@ -24,10 +23,9 @@ const home = (props) => {
             <h1> Decision Tree</h1>
             <div className="ui card">
                 <div className="image">
-                    <img src="https://storage.cloud.google.com/mlalgovisualiser/7Y3FeE6AohYZMXw2QPJAazjmNh13.png?authuser=1" />
+                    <img alt="hello" src="https://storage.cloud.google.com/mlalgovisualiser/7Y3FeE6AohYZMXw2QPJAazjmNh13.png?authuser=1" />
                 </div>
                 <div className="content">
-                    <a className="header">Hello user</a>
                 </div>
             </div>
         </React.Fragment>);

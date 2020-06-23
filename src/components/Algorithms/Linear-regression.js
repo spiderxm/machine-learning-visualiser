@@ -1,7 +1,5 @@
 import React, {Component} from "react";
-import {Button} from "semantic-ui-react";
 import axios from 'axios'
-import {Label, Input} from "semantic-ui-react";
 
 class linearregression extends Component {
     state = {

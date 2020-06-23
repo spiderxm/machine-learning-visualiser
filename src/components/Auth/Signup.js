@@ -25,8 +25,6 @@ class Signup extends Component {
         this.setState({err: null})
         this.setState({load: true})
         event.preventDefault();
-        console.log(this.state.email)
-        console.log(this.state.password)
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(response => {
                 const data = new FormData();
@@ -34,14 +32,13 @@ class Signup extends Component {
                 data.append('filename', response.user.uid + ".png");
                 axios.post("/upload", data).then((response) => {
                     this.setState({imageURL: response.data})
-                    alert("You have Signed up Successfully, please login to continue.");
+                    alert("You have Signed up Successfully.");
                     this.setState({redirect: true})
                     this.setState({load: false})
-
+                    window.location.reload();
                 });
             })
             .catch(err => {
-                console.log(err)
                     this.setState({load: false})
                     this.setState({err: err.message})
                 }
@@ -49,7 +46,7 @@ class Signup extends Component {
     }
     renderRedirect = () => {
         if (this.state.redirect) {
-            return <Redirect to='/login'/>
+            return <Redirect to='/'/>
         }
     }
 
