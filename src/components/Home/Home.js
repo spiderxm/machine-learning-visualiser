@@ -9,10 +9,135 @@ import knn from '../../assests/attachments/k nearest Neighbours.png'
 import SVM from '../../assests/attachments/SVM.png'
 import {Link} from 'react-router-dom'
 import Randomforestlogo from "../../assests/attachments/RandomForest.png"
+import {
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  List,
+  Menu,
+  Responsive,
+  Segment,
+  Sidebar,
+  Visibility,
+} from 'semantic-ui-react'
+
+import PropTypes from 'prop-types'
+
+
+
+// Heads up!
+// We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
+// For more advanced usage please check Responsive docs under the "Usage" section.
+const getWidth = () => {
+  const isSSR = typeof window === 'undefined'
+
+  return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
+}
+
+
+const HomepageHeading = ({ mobile }) => (
+  <Container text>
+    <Header
+      as='h1'
+      content='Imagine-a-Company'
+      inverted
+      style={{
+        fontSize: mobile ? '2em' : '4em',
+        fontWeight: 'normal',
+        marginBottom: 0,
+        marginTop: mobile ? '1.5em' : '3em',
+      }}
+    />
+    <Header
+      as='h2'
+      content='Do whatever you want when you want to.'
+      inverted
+      style={{
+        fontSize: mobile ? '1.5em' : '1.7em',
+        fontWeight: 'normal',
+        marginTop: mobile ? '0.5em' : '1.5em',
+      }}
+    />
+    <Button primary size='huge'>
+      Get Started
+      <Icon name='right arrow' />
+    </Button>
+  </Container>
+)
+
+
+
+
+class DesktopContainer extends Component {
+  state = {}
+
+  hideFixedMenu = () => this.setState({ fixed: false })
+  showFixedMenu = () => this.setState({ fixed: true })
+
+  render() {
+    const { children } = this.props
+    const { fixed } = this.state
+
+    return (
+      <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
+        <Visibility
+          once={false}
+          onBottomPassed={this.showFixedMenu}
+          onBottomPassedReverse={this.hideFixedMenu}
+        >
+          <Segment
+            inverted
+            textAlign='center'
+            style={{ minHeight: 700, padding: '1em 0em' }}
+            vertical
+          >
+            <Menu
+              fixed={fixed ? 'top' : null}
+              inverted={!fixed}
+              pointing={!fixed}
+              secondary={!fixed}
+              size='large'
+            >
+
+            </Menu>
+            <HomepageHeading />
+          </Segment>
+        </Visibility>
+
+        {children}
+      </Responsive>
+    )
+  }
+}
+
+
+
+
+
+const ResponsiveContainer = ({ children }) => (
+  <div>
+    <DesktopContainer>{children}</DesktopContainer>
+
+  </div>
+)
+
+ResponsiveContainer.propTypes = {
+  children: PropTypes.node,
+}
+
+
 
 const home = (props) => {
     return (
         <React.Fragment>
+            <ResponsiveContainer>
+
+            </ResponsiveContainer>
+
 
             <div className="ui three column doubling stackable grid container" style={{marginTop:"10vh"}}>
                 <div className="column">
