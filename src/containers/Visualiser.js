@@ -207,12 +207,13 @@ class MenuBar extends Component {
                         <Route path={"/svm"} exact render={() => <Svm/>}/>
                         <Route path={"/randomforest"} exact render={() => <RandomForest/>}/>
                         <Route path={"/logisticregression"} exact render={() => <LogisticRegression/>}/>
-                        <div className="ui inverted vertical footer segment">
-                            <div className="ui center aligned container fixed">
-                                <h4 className="ui inverted header">&copy; spiderxm</h4>
-                                <a href="https://www.facebook.com/"><i className="github square icon big"></i></a>
-                            </div>
-                        </div>
+                        {/*<div className="ui inverted vertical footer segment" style={{bottom: "0px", left:"0px"}}>*/}
+                        {/*    <div className="ui center aligned container " >*/}
+                        {/*        <h4 className="ui inverted header">&copy; spiderxm</h4>*/}
+                        {/*        <a href="https://www.facebook.com/"><i className="github square icon big"></i></a>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+                        
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </div>
