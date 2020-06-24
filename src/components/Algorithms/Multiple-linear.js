@@ -60,16 +60,13 @@ class multipleLinear extends Component {
             research: parseInt(this.state.research)
 
         }
-        console.log(data)
         axios.post('/multiplelinearregression', data)
             .then(response => {
-                console.log(response.data)
                 this.setState({
                     result: response.data,
                     showresult: true
                 })
             }).catch(err => {
-            console.log(err);
             this.setState({
                 result: null,
                 showresult: false

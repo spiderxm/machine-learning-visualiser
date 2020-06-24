@@ -29,19 +29,14 @@ class LogisticRegression extends Component {
         const data = {
             Self_Study_Daily: parseInt(this.state.Self_Study_Daily),
             Tution_Monthly: parseInt(this.state.Tution_Monthly),
-
-
         }
-        console.log(data)
         axios.post('/logisticregression', data)
             .then(response => {
-                console.log(response.data)
                 this.setState({
                     result: response.data,
                     showresult: true
                 })
             }).catch(err => {
-            console.log(err);
             this.setState({
                 result: null,
                 showresult: false,

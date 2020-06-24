@@ -81,16 +81,13 @@ class RandomForest extends Component {
             sulphates: parseFloat(this.state.sulphates),
             alcohol: parseFloat(this.state.alcohol)
         }
-        console.log(data)
         axios.post('/forest', data)
             .then(response => {
-                console.log(response.data)
                 this.setState({
                     result: response.data,
                     showresult: true
                 })
             }).catch(err => {
-            console.log(err);
             this.setState({
                 result: null,
                 showresult: false,

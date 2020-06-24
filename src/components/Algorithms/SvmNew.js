@@ -37,16 +37,13 @@ class SvmNew extends Component {
             Age: parseInt(this.state.Age),
             EstimatedSalary: parseInt(this.state.EstimatedSalary),
         }
-        console.log(data)
         axios.post('/svm', data)
             .then(response => {
-                console.log(response.data)
                 this.setState({
                     result: response.data,
                     showresult: true
                 })
             }).catch(err => {
-            console.log(err);
             this.setState({
                 result: null,
                 showresult: false
@@ -59,23 +56,30 @@ class SvmNew extends Component {
     EstimatedSalarychangeHandler = (event) => {
         this.setState({EstimatedSalary: event.target.value})
     }
-    GenderchangeHandler = (event) => {
-        const value = this.state.Gender
-        if (value === 1) {
-            this.setState({research: 0})
-        } else {
-            this.setState({research: 1})
+    Genderchange = (event) => {
+        if (event.target.value === "Male") {
+            this.setState({Gender: 1})
+        }
+        if (event.target.value === "Female") {
+            this.setState({Gender: 0})
         }
     }
 
 
     render() {
         let probability = null;
+        let prediction = null;
         if (this.state.result) {
+            if (this.state.result.result === 0) {
+                prediction = "No";
+            }
+            if (this.state.result.result === 0) {
+                prediction = "Yes";
+            }
             probability = (
                 <div>
                     <div className="ui section divider"></div>
-                    <h3><strong>Would You Be Buying From an Advertisement or not : {this.state.result.result}</strong>
+                    <h3><strong>Prediction : {prediction}</strong>
                     </h3>
                 </div>
             )
@@ -123,6 +127,7 @@ class SvmNew extends Component {
                 </div>
                 <div className="ui container left aligned" style={style}>
                     <h1 className={"centered"}>Support Vector Machine</h1>
+                    <h3>Predict whether someone will get affected by advertisement or not</h3>
                     <div className="ui section divider"></div>
                     <form className="ui form" onSubmit={this.result} id={"form"}>
                         <div className="field">
@@ -137,23 +142,14 @@ class SvmNew extends Component {
                                    onChange={this.EstimatedSalarychangeHandler}
                                    max={this.state.max.EstimatedSalary} required placeholder="Estimated Salary"/>
                         </div>
-
-                        <label for={"gender"}>choose your gender :</label>
-                        <select id={"gender"} name={"cars"}>
-                            <option value={"Male"}>Male</option>
-                            <option value={"Female"}>Female</option>
-                        </select>
-                        <div className="ui segment">
-                            <div className="field">
-                                <div className="ui toggle checkbox">
-                                    <input type="checkbox" name="gift" tabIndex="0"
-                                           onChange={this.GenderchangeHandler}/>
-                                    <label>Gender</label>
-                                </div>
-                            </div>
+                        <div className={"field"}>
+                            <label style={{color: "white"}} htmlFor={"gender"}>Gender</label>
+                            <select id={"gender"} name={"cars"} onChange={this.Genderchange}>
+                                <option value={"Male"}>Male</option>
+                                <option value={"Female"}>Female</option>
+                            </select>
                         </div>
-
-                        <button className="ui button" type="submit">Submit</button>
+                        <button className="ui button inverted basic" type="submit">Predict</button>
                     </form>
                     {probability}
                 </div>

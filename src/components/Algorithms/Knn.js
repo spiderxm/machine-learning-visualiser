@@ -32,10 +32,8 @@ class knn extends Component {
             pl: parseFloat(this.state.pl),
             pw: parseFloat(this.state.pw)
         }
-        // console.log(data)
         axios.post('/knn', data)
             .then(response => {
-                console.log(response)
                 this.setState({
                     result: response.data,
                     error: false

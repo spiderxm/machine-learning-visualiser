@@ -60,15 +60,15 @@ class DecisionTree extends Component {
     skinthicknesschangeHandler = (event) => {
         this.setState({SkinThickness: event.target.value})
     }
-
-    componentDidMount() {
-        axios.get('/decisiontree')
-            .then(response => {
-                console.log(response)
-            }).catch(err => {
-            console.log(err)
-        })
-    }
+    //
+    // componentDidMount() {
+    //     axios.get('/decisiontree')
+    //         .then(response => {
+    //             console.log(response)
+    //         }).catch(err => {
+    //         console.log(err)
+    //     })
+    // }
 
     result = (event) => {
         event.preventDefault();
@@ -84,12 +84,10 @@ class DecisionTree extends Component {
         }
         axios.post('/decisiontree', data)
             .then(response => {
-                console.log(response)
                 this.setState({result: response.data})
                 this.setState({error: false})
             })
             .catch(error => {
-                console.log(error)
                 this.setState({error: true})
             })
     }
